@@ -161,10 +161,10 @@ body .container section#reaction-transition.evaluation-next > h2{display:block;w
 .lewis-learning .lewis-atom{position:relative;display:block;width:100%;height:100%;border-radius:50%;background:#fff;isolation:isolate}
 .lewis-learning .element-symbol{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(1.6rem,3vw,2rem);font-weight:750;color:var(--ink)}
 .lewis-learning .electron-zone{position:absolute;display:flex;gap:5px;justify-content:center;align-items:center;pointer-events:none}
-.lewis-learning .electron-zone.top{top:9%;left:50%;transform:translateX(-50%)}
-.lewis-learning .electron-zone.bottom{bottom:9%;left:50%;transform:translateX(-50%)}
-.lewis-learning .electron-zone.left{left:9%;top:50%;transform:translateY(-50%);flex-direction:column}
-.lewis-learning .electron-zone.right{right:9%;top:50%;transform:translateY(-50%);flex-direction:column}
+.lewis-learning .electron-zone[data-side="top"]{top:9%;left:50%;transform:translateX(-50%)}
+.lewis-learning .electron-zone[data-side="bottom"]{bottom:9%;left:50%;transform:translateX(-50%)}
+.lewis-learning .electron-zone[data-side="left"]{left:9%;top:50%;transform:translateY(-50%);flex-direction:column}
+.lewis-learning .electron-zone[data-side="right"]{right:9%;top:50%;transform:translateY(-50%);flex-direction:column}
 .lewis-learning .electron-dot{display:inline-block;width:9px;height:9px;min-width:9px;min-height:9px;background:var(--covalent);border-radius:50%;flex:none}
 .lewis-learning .translator-layout{display:grid;grid-template-columns:minmax(180px,.65fr) minmax(0,1.35fr);gap:30px;align-items:center}
 .lewis-learning .lewis-symbol-builder{padding:20px;border-radius:18px;background:var(--surface);min-width:0}

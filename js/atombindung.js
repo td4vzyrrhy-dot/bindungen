@@ -194,7 +194,7 @@
     renderPartners();
 
     // One graph editor serves both free construction and repairs. Positions never determine correctness.
-    function atomSvg(symbol,degree=0,glasses=false,occupiedAngles=[],freePairs=0) {
+    function atomSvg(symbol,degree=0,glasses=false,occupiedAngles=[],freePairs=0,freeZones=[0,0,0,0]) {
       const data=covalentAtoms[symbol];
       const singles=Math.max(0,data.typicalBonds-degree);
       const available=[-90,0,90,180].sort((a,b)=>{
@@ -202,8 +202,10 @@
         return distance(b)-distance(a);
       });
       let dots='';
-      const groups=glasses?[...Array(freePairs).fill(2),...Array(degree).fill(1),...Array(singles).fill(1)]:[...Array(freePairs).fill(2)];
-      groups.forEach((count,i)=>{const angle=available[i%4]*Math.PI/180;const radialX=50+34*Math.cos(angle),radialY=50+34*Math.sin(angle);if(count===2){const tangentX=-Math.sin(angle)*7,tangentY=Math.cos(angle)*7;dots+=`<line x1="${radialX-tangentX}" y1="${radialY-tangentY}" x2="${radialX+tangentX}" y2="${radialY+tangentY}" class="free-pair-line"/>`;return;}dots+=`<circle cx="${radialX}" cy="${radialY}" r="3" class="valence-dot"/>`;});
+      const drawPair=angle=>{const radialX=50+34*Math.cos(angle),radialY=50+34*Math.sin(angle),tangentX=-Math.sin(angle)*7,tangentY=Math.cos(angle)*7;dots+=`<line x1="${radialX-tangentX}" y1="${radialY-tangentY}" x2="${radialX+tangentX}" y2="${radialY+tangentY}" class="free-pair-line"/>`;};
+      freeZones.forEach((value,index)=>{if(value===2)drawPair([-90,0,90,180][index]*Math.PI/180);});
+      const groups=glasses?[...Array(degree).fill(1),...Array(singles).fill(1)]:[];
+      groups.forEach((count,i)=>{const angle=available[(freePairs+i)%4]*Math.PI/180;const radialX=50+34*Math.cos(angle),radialY=50+34*Math.sin(angle);dots+=`<circle cx="${radialX}" cy="${radialY}" r="3" class="valence-dot"/>`;});
       return `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44" class="atom-disc"/><text x="50" y="58" text-anchor="middle">${symbol}</text>${dots}</svg>`;
     }
     class MoleculeEditor {
@@ -228,7 +230,7 @@
           const slot=slots[atom.slot],count=bondCount(this.graph,atom.id);
           const neighbors=this.graph.bonds.filter(b=>b.includes(atom.id)).map(b=>this.graph.atoms.find(a=>a.id===b.find(id=>id!==atom.id)));
           const angles=neighbors.map(n=>Math.atan2(slots[n.slot].y-slot.y,slots[n.slot].x-slot.x)*180/Math.PI);
-          return `<button class="builder-atom ${this.highlight===atom.id?'shell-highlight':''}" type="button" data-atom="${atom.id}" style="left:${slot.x}%;top:${slot.y}%" aria-pressed="${this.selection.includes(atom.id)}" aria-label="${covalentAtoms[atom.symbol].name}, ${count} ${count===1?'Bindung':'Bindungen'}, ${freePairCount(atom)} freie Elektronenpaare, ${['Mitte','links','rechts','oben','unten'][atom.slot]}">${atomSvg(atom.symbol,count,this.glasses,angles,freePairCount(atom))}<span class="atom-bond-count">${count} ${count===1?'Bindung':'Bindungen'} · ${freePairCount(atom)} freie Paare</span></button>`;
+          return `<button class="builder-atom ${this.highlight===atom.id?'shell-highlight':''}" type="button" data-atom="${atom.id}" style="left:${slot.x}%;top:${slot.y}%" aria-pressed="${this.selection.includes(atom.id)}" aria-label="${covalentAtoms[atom.symbol].name}, ${count} ${count===1?'Bindung':'Bindungen'}, ${freePairCount(atom)} freie Elektronenpaare, ${['Mitte','links','rechts','oben','unten'][atom.slot]}">${atomSvg(atom.symbol,count,this.glasses,angles,freePairCount(atom),atom.free)}<span class="atom-bond-count">${count} ${count===1?'Bindung':'Bindungen'} · ${freePairCount(atom)} freie Paare</span></button>`;
         }).join('');
         let lines='',targets='';
         this.graph.bonds.forEach((bond,i)=>{
