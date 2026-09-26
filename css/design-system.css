@@ -1,0 +1,128 @@
+/* Gemeinsame Gestaltung der gesamten Lerneinheit.
+   Diese Datei wird nach den fachbezogenen Modell-Styles geladen. */
+:root {
+  --bg: #f7f4ee;
+  --ink: #183236;
+  --muted: #536b6e;
+  --card: #fff;
+  --surface: #f0f4f2;
+  --line: #d5e0db;
+  --petrol: #183f43;
+  --success: #287344;
+  --shadow: 0 6px 22px rgba(24,50,54,.055);
+  --ui-radius: 20px;
+  --ui-small-radius: 12px;
+  --ui-space: clamp(20px,3.8vw,36px);
+  --ui-note: #edf5f2;
+  --ui-error: #922f29;
+}
+body {font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.65;color:var(--ink);background:var(--bg)}
+body .container {width:min(1000px,calc(100% - 40px));max-width:1000px;padding:48px 0 72px}
+body .discovery-station {width:min(1120px,calc(100% - 40px));max-width:1120px}
+body .mission-header {max-width:820px;margin:0 auto 36px;text-align:center}
+body .mission-header h1,body .placeholder h1 {margin:8px 0 18px;font-size:clamp(2rem,4.6vw,3.5rem);line-height:1.13;letter-spacing:-.035em;font-weight:750;text-wrap:balance;overflow-wrap:break-word}
+body .hero h1 {font-size:clamp(2.8rem,7vw,5rem);line-height:1.06;letter-spacing:-.04em}
+body .subtitle,body .research-question {font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.5;color:var(--muted);max-width:750px;margin:12px auto 0;text-wrap:pretty}
+body .lead,body .mission-header>p:not([class]):not([id]) {max-width:740px;margin:18px auto 0;font-size:1rem;color:var(--muted)}
+body :is(.eyebrow,.mission-number,.step-label) {color:var(--petrol);font-size:.75rem;font-weight:800;letter-spacing:.12em;line-height:1.6;text-transform:uppercase;margin:0 0 10px}
+body h2,body h3,body legend {text-wrap:pretty}
+body .container :is(.discovery-card,.binding-panel,.binding-finish,.ionic-panel,.ionic-finish,.research-station,.salt-summary,.salt-finish,.worksheet-part,.worksheet-check,.worksheet-success,.evaluation-card,.evaluation-next,.covalent-card,.lewis-card,.metal-card,.mission-card) {
+  margin:0 auto 28px;padding:var(--ui-space);border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card);box-shadow:var(--shadow);scroll-margin-top:100px;
+}
+body .container :is(.discovery-card,.binding-panel,.binding-finish,.ionic-panel,.ionic-finish,.research-station,.salt-summary,.salt-finish,.worksheet-part,.worksheet-check,.worksheet-success,.evaluation-card,.evaluation-next,.covalent-card,.lewis-card,.metal-card,.mission-card)>h2 {
+  margin:0 0 18px;font-size:clamp(1.45rem,2.7vw,1.95rem);line-height:1.3;letter-spacing:-.02em;color:var(--ink);
+}
+body .container :is(.card,.salt-property-overview article) {border:1px solid var(--line);border-radius:var(--ui-radius);padding:24px;box-shadow:var(--shadow)}
+body .card:hover {transform:none}
+body .card h2 {font-size:1.35rem;line-height:1.3}
+/* Buttons look the same across all three bonding units. */
+body .container .btn,body .teacher-check-card .btn {
+  min-height:48px;padding:12px 20px;border-radius:var(--ui-small-radius);border:1px solid var(--petrol);font-size:.95rem;font-weight:700;line-height:1.4;letter-spacing:0;background:#fff;color:var(--petrol);white-space:normal;text-align:center;box-shadow:none;transition:background .15s,border-color .15s;
+}
+body .container .btn-primary,body .teacher-check-card .btn-primary {background:var(--petrol);border-color:var(--petrol);color:#fff}
+body .container .btn:hover,body .teacher-check-card .btn:hover {transform:none;background:var(--surface)}
+body .container .btn-primary:hover,body .teacher-check-card .btn-primary:hover {background:#24575c;color:#fff}
+body .container .btn-danger {color:var(--ui-error);border-color:var(--ui-error)}
+body .container .btn:disabled {opacity:.45;cursor:not-allowed}
+body .actions {gap:12px;margin-top:24px}
+body :is(button,a,input,select,textarea):focus-visible {outline:3px solid #2879b2;outline-offset:3px}
+body :is(input,select,textarea) {font:inherit;accent-color:var(--petrol)}
+body .container :is(input[type="text"],input[type="number"],select,textarea) {min-height:48px;border-radius:10px;border:1px solid #93aaa1;padding:11px 14px;background:#fff;color:var(--ink);font:inherit;max-width:100%;box-sizing:border-box}
+/* Shared question framing; existing success/error states remain visible. */
+body .container :is(.covalent-quiz,.lewis-quiz,.metal-quiz) {margin:24px 0 0;padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--surface);min-width:0}
+body .container :is(.covalent-quiz,.lewis-quiz,.metal-quiz) legend {font-size:1.02rem;font-weight:750;padding:0 6px;line-height:1.5}
+body .container :is(.covalent-options,.lewis-options,.metal-options) button {min-height:48px;padding:14px 16px;border-radius:var(--ui-small-radius);font-size:1rem;line-height:1.5}
+body .salt-test-question {margin:24px 0;padding:20px;border-radius:16px}
+body .salt-test-question legend {font-size:1.02rem;line-height:1.5}
+body .salt-test-question label {border-radius:var(--ui-small-radius);padding:12px 14px}
+body .salt-test-question.correct {border-color:var(--success);background:#edf7f1}
+body .salt-test-question.incorrect {border-color:var(--ui-error);background:#fff0ee}
+body .worksheet-progress {max-width:650px;margin:28px auto 0;padding:16px 20px;border:1px solid var(--line);border-radius:16px;background:var(--surface);font-size:.9rem}
+body .worksheet-progress i {background:var(--petrol)}
+/* Merksätze share one calm visual treatment, including the notebook variants. */
+body .container :is(.takeaway-card,.covalent-takeaway,.metal-takeaway,.lewis-rule,.rule-reminder,.term-card) {background:var(--ui-note);border:1px solid var(--line);border-left:4px solid var(--petrol);border-radius:14px;padding:22px 24px;box-shadow:none;text-align:left}
+body .container :is(.takeaway-card,.covalent-takeaway,.metal-takeaway,.lewis-rule,.rule-reminder) p {font-family:inherit;font-size:1rem;line-height:1.75}
+body .container :is(.covalent-takeaway,.metal-takeaway) h3 {font-size:.85rem;font-weight:800;letter-spacing:.06em;color:var(--petrol);margin-top:0}
+body .container .notebook-copy-card {margin-top:28px!important;padding:58px 24px 24px!important;border:1px solid var(--line)!important;border-left:4px solid var(--petrol)!important;border-radius:14px;background:var(--ui-note)!important;box-shadow:none!important}
+body .container .notebook-copy-card::before {background:var(--petrol);border-radius:10px 13px 0 0;letter-spacing:.08em;font-size:.72rem}
+body .container .notebook-copy-card p {font-family:inherit;font-size:1rem;line-height:1.75}
+body .container :is(.model-note,.lewis-model-note,.metal-test-figure figcaption) {font-size:.85rem;line-height:1.6;color:var(--muted)}
+body .container :is(.metal-feedback,.covalent-feedback,.lewis-feedback,.ionic-feedback,.salt-feedback,.binding-feedback,.gentle-feedback) {border-radius:var(--ui-small-radius);font-size:.95rem;line-height:1.6}
+body .container :is(.metal-feedback.is-success,.covalent-feedback.is-success,.lewis-feedback.is-success,.ionic-feedback.correct,.salt-feedback.correct,.binding-feedback.correct,.gentle-feedback.success) {background:#edf7f1;color:#205d39}
+body .container :is(.metal-feedback.is-error,.ionic-feedback.wrong,.salt-feedback.wrong,.binding-feedback.wrong) {background:#fff0ee;color:var(--ui-error)}
+/* Shared navigation, including enough space for the labels on phones. */
+body .site-nav {min-height:68px;padding:10px clamp(12px,4vw,48px);border-bottom:1px solid var(--line)}
+body .site-nav .brand {font-size:.8rem;letter-spacing:.1em}
+body .site-nav a {border-radius:10px}
+body .progress-shell {padding:14px 20px 16px}
+body .progress-steps {max-width:760px;font-size:.78rem}
+body .progress-steps .active:before {background:var(--petrol)}
+body .teacher-check-card {overflow-y:auto;align-content:start;padding:clamp(32px,6vw,72px);gap:24px}
+body .teacher-check-card::before {position:fixed;border:2px solid var(--petrol);border-radius:var(--ui-radius)}
+body .teacher-check-card :is(h2,h3) {font-size:clamp(1.6rem,3.5vw,2.5rem);line-height:1.2;letter-spacing:-.025em}
+body .teacher-check-card p {font-size:1.05rem;line-height:1.65}
+body .teacher-check-card p:last-of-type {font-size:1.05rem}
+body .teacher-check-card .step-label {font-size:.75rem}
+body .tablet-away-icon {width:64px;height:64px;border-width:2px;border-radius:14px;font-size:2.5rem}
+body .footer {color:var(--muted);font-size:.85rem}
+@media(max-width:760px) {
+  body .card-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  body .container,body .discovery-station {width:calc(100% - 28px);padding-top:32px;padding-bottom:48px}
+  body .site-nav {grid-template-columns:auto 1fr auto;gap:4px;padding-inline:10px}
+  body .site-nav .brand {font-size:.7rem;letter-spacing:.06em;justify-content:center}
+  body .site-nav :is(.nav-back,.knowledge-link) {font-size:.8rem;padding:8px}
+  body .mission-header {margin-bottom:28px}
+}
+@media(max-width:480px) {
+  :root {--ui-space:20px 16px}
+  body .card-grid {grid-template-columns:1fr}
+  body .site-nav .brand {font-size:.64rem;max-width:135px;justify-self:center;text-align:center}
+  body .site-nav :is(.nav-back,.knowledge-link) {font-size:.75rem;padding:6px}
+  body .progress-shell {padding-inline:10px}
+  body .progress-steps {font-size:.64rem;gap:4px}
+  body .progress-steps span:not(:last-child):after {right:-5px}
+  body .container :is(.covalent-quiz,.lewis-quiz,.metal-quiz,.salt-test-question) {padding:16px 12px}
+  body .container :is(.takeaway-card,.covalent-takeaway,.metal-takeaway,.lewis-rule,.rule-reminder) {padding:18px}
+  body .container .notebook-copy-card {padding:58px 16px 20px!important}
+  body .worksheet-progress {padding:14px;font-size:.82rem}
+  body .teacher-check-card {padding:34px 28px;grid-template-columns:minmax(0,1fr)}
+  body .teacher-check-card::before {inset:12px}
+}
+@media(prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto}
+  *,*::before,*::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+@media print {
+  body {background:#fff}
+  body .container {width:100%;max-width:none;padding:0}
+  .site-nav,.progress-shell {display:none}
+  body .container :is(.worksheet-part,.covalent-card,.lewis-card,.metal-card,.ionic-panel,.research-station) {box-shadow:none;break-inside:avoid}
+}
+
+/* Vollständige Elementsymbole in den kleinen PSE-Positionskarten. */
+body .ionic-station .mini-pse-cell.highlight {
+  width:34px;min-width:34px;height:28px;min-height:28px;
+  justify-self:center;align-self:center;padding:0;border-width:2px;
+  font-size:14px;line-height:1;font-style:normal;white-space:nowrap;
+  overflow:visible;transform:none;
+}

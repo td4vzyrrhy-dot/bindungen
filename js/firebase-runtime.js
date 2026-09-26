@@ -1,0 +1,7 @@
+(function(){
+  if(window.BindungenFirebaseReady){console.log('[Firebase] Runtime bereits angefordert.');return}
+  const config={apiKey:'AIzaSyD_K9pAtNDuCplUF8RP-3B8pHUo8ADV_P8',authDomain:'chemische-bindungen.firebaseapp.com',projectId:'chemische-bindungen',storageBucket:'chemische-bindungen.firebasestorage.app',messagingSenderId:'896542951',appId:'1:896542951:web:c25b5e0baaf6b7732a5a42'};
+  const urls=['https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js','https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js','https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js'];
+  const load=url=>new Promise((resolve,reject)=>{console.log('[Firebase] SDK wird geladen:',url);const s=document.createElement('script');s.src=url;s.onload=()=>{console.log('[Firebase] SDK geladen:',url);resolve()};s.onerror=()=>reject(new Error('Firebase konnte nicht geladen werden: '+url));document.head.appendChild(s)});
+  window.BindungenFirebaseReady=(async()=>{try{for(const url of urls)await load(url);const app=firebase.apps.length?firebase.app():firebase.initializeApp(config);const runtime={app,auth:firebase.auth(),db:firebase.firestore()};console.log('[Firebase] initialisiert',config.projectId);return runtime}catch(error){console.error('[Firebase] Initialisierung fehlgeschlagen',error);throw error}})().catch(error=>{console.error('[Firebase] Runtime nicht verfügbar',error);return null});
+})();

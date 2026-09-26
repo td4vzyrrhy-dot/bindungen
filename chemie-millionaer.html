@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chemie-Millionär</title><link rel="stylesheet" href="css/bindungen.css"><link rel="stylesheet" href="css/chemie-millionaer.css"><link rel="stylesheet" href="css/design-system.css"></head>
+<body><div data-navigation></div>
+<main class="millionaire" id="millionaire">
+  <header class="millionaire-header"><p class="eyebrow">DAS GROSSE EINHEITSFINALE</p><h1>Wer wird Chemie-Millionär?</h1><p class="subtitle">Die Quizshow zur gesamten Einheit „Chemische Bindungen“</p><p class="millionaire-host">Du gegen zehn Fragen. Jede richtige Antwort bringt dich eine Gewinnstufe weiter.</p></header>
+  <section class="millionaire-stage" aria-live="polite"><div class="millionaire-top"><span id="question-count">Frage 1 von 10</span><strong id="prize">100 Chemie-Punkte</strong></div><div class="lifelines"><button type="button" data-joker="fifty">50:50</button><button type="button" data-joker="audience">Publikum</button></div><div class="question-panel"><p class="category" id="category">PSE</p><h2 id="question"></h2><div class="answer-grid" id="answers"></div><p class="millionaire-feedback" id="feedback" role="status"></p><button type="button" class="btn btn-primary next-question" id="next-question" hidden>Nächste Frage →</button></div></section>
+  <aside class="prize-ladder" aria-label="Gewinnstufen"><h2>Gewinnleiter</h2><ol id="prize-ladder"></ol></aside>
+  <section class="millionaire-finish" id="finish" hidden><p class="step-label">SHOW BEENDET</p><h2>Dein Chemie-Ergebnis</h2><p id="final-score"></p><button type="button" class="btn btn-primary" id="restart">Nochmal spielen</button></section>
+</main><script src="js/progress.js"></script><script src="js/navigation.js"></script><script src="js/chemie-millionaer.js"></script></body></html>

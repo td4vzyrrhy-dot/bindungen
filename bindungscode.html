@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Der Bindungscode</title>
+  <link rel="stylesheet" href="css/bindungen.css">
+<link rel="stylesheet" href="css/design-system.css"></head>
+<body>
+  <div data-navigation></div>
+  <main class="container binding-station">
+    <header class="mission-header">
+      <p class="eyebrow">VORHERSAGEN · BINDUNGSART</p>
+      <h1>Der Bindungscode</h1>
+      <p class="subtitle">Was passiert, wenn verschiedene Atome aufeinandertreffen?</p>
+      <p class="lead">Du weißt bereits, welche Elemente Metalle und welche Nichtmetalle sind. Jetzt kannst du damit vorhersagen, welche Art von Bindung zwischen Atomen entstehen kann.</p>
+      <p class="look-closer">Entdecke das Muster.</p>
+    </header>
+
+    <section class="binding-panel" id="discovery-part">
+      <div class="binding-section-head"><div><p class="step-label">TEIL 1 · ENTDECKEN</p><h2>Drei Begegnungen</h2></div><span id="example-progress">Beispiel 1 von 3</span></div>
+      <div id="example-stage" aria-live="polite"></div>
+      <div class="actions"><button class="btn btn-primary" id="next-example">Nächstes Beispiel</button></div>
+    </section>
+
+    <section class="binding-panel" id="rules-part" hidden>
+      <p class="step-label">TEIL 2 · ZUSAMMENSETZEN</p>
+      <h2>Vervollständige den Bindungscode</h2>
+      <p>Tippe eine Bindungsart und danach die passende Regel an. Du kannst die Karten auch ziehen.</p>
+      <div class="rule-builder">
+        <button class="rule-slot" data-rule="metallic"><strong>Metall + Metall</strong><span>→</span><em>________</em></button>
+        <button class="rule-slot" data-rule="ionic"><strong>Metall + Nichtmetall</strong><span>→</span><em>________</em></button>
+        <button class="rule-slot" data-rule="covalent"><strong>Nichtmetall + Nichtmetall</strong><span>→</span><em>________</em></button>
+      </div>
+      <div class="binding-tokens" aria-label="Bindungsarten auswählen">
+        <button class="binding-token metallic" draggable="true" data-binding="metallic">METALLBINDUNG</button>
+        <button class="binding-token ionic" draggable="true" data-binding="ionic">IONENBINDUNG</button>
+        <button class="binding-token covalent" draggable="true" data-binding="covalent">ATOMBINDUNG</button>
+      </div>
+      <div class="binding-feedback" id="rule-feedback" role="status" aria-live="polite"></div>
+      <div class="decoded-card" id="decoded-card" hidden>
+        <p class="step-label">BINDUNGSCODE ENTSCHLÜSSELT</p>
+        <p><strong>Metall + Metall</strong> → <button class="inline-binding-info metallic" data-binding-info="metallic">Metallbindung ⓘ</button></p>
+        <p><strong>Metall + Nichtmetall</strong> → <button class="inline-binding-info ionic" data-binding-info="ionic">Ionenbindung ⓘ</button></p>
+        <p><strong>Nichtmetall + Nichtmetall</strong> → <button class="inline-binding-info covalent" data-binding-info="covalent">Atombindung ⓘ</button></p>
+        <aside class="notebook-copy-card">
+          <div class="notebook-symbol" aria-hidden="true">✎</div>
+          <div>
+            <p class="step-label">MERKSATZ FÜR DEIN HEFT</p>
+            <p>Anhand der beteiligten Elemente lässt sich vorhersagen, welche Bindungsart zu erwarten ist:</p>
+            <p><strong>Metall + Metall → Metallbindung</strong><br><strong>Metall + Nichtmetall → Ionenbindung</strong><br><strong>Nichtmetall + Nichtmetall → Atombindung</strong></p>
+            <small>Übertrage diesen Merksatz in dein Heft, bevor du mit Teil 3 beginnst.</small>
+          </div>
+        </aside>
+        <div class="actions"><button class="btn btn-primary" id="start-binding-quiz">Bindungscode knacken</button></div>
+      </div>
+    </section>
+
+    <section class="binding-panel binding-quiz" id="quiz-part" hidden>
+      <div class="binding-section-head"><div><p class="step-label">TEIL 3 · ANWENDEN</p><h2>Knacke den Bindungscode</h2></div><strong id="binding-progress">Aufgabe 1 von 8</strong></div>
+      <div class="binding-dots" id="binding-dots" aria-hidden="true"></div>
+      <div id="binding-question"></div>
+      <div class="binding-feedback" id="quiz-feedback" role="status" aria-live="polite"></div>
+      <div class="actions"><button class="btn btn-primary" id="next-binding-question" hidden>Nächste Aufgabe</button></div>
+    </section>
+
+    <section class="binding-finish" id="binding-finish" hidden>
+      <p class="step-label">AUSWERTUNG</p>
+      <h2>Bindungscode geknackt!</h2>
+      <div class="final-rule-grid">
+        <article class="final-rule metallic"><strong>METALL + METALL</strong><span>→</span><button class="inline-binding-info metallic" data-binding-info="metallic">METALLBINDUNG ⓘ</button></article>
+        <article class="final-rule ionic"><strong>METALL + NICHTMETALL</strong><span>→</span><button class="inline-binding-info ionic" data-binding-info="ionic">IONENBINDUNG ⓘ</button></article>
+        <article class="final-rule covalent"><strong>NICHTMETALL + NICHTMETALL</strong><span>→</span><button class="inline-binding-info covalent" data-binding-info="covalent">ATOMBINDUNG ⓘ</button></article>
+      </div>
+      <div class="takeaway-card binding-takeaway"><p class="step-label">DAS SOLLTEST DU MITNEHMEN</p><p>Anhand der beteiligten Elemente kannst du vorhersagen, welche Bindungsart zu erwarten ist.</p><p>Metall + Metall → Metallbindung<br>Metall + Nichtmetall → Ionenbindung<br>Nichtmetall + Nichtmetall → Atombindung</p></div>
+      <aside class="teacher-check-card" aria-labelledby="teacher-check-title" hidden>
+        <div class="tablet-away-icon" aria-hidden="true">▱</div>
+        <div>
+          <p class="step-label">KURZER WISSENSCHECK</p>
+          <h3 id="teacher-check-title">Lege jetzt das Tablet zur Seite.</h3>
+          <p>Hole dir bei <strong>Frau Bachmann</strong> einen kurzen Test zur Überprüfung deines bisherigen Wissens. Nach dem Test erhältst du von Frau Bachmann den Code zum Weiterarbeiten.</p>
+          <div class="teacher-code-entry">
+            <label for="teacher-check-code">Code von Frau Bachmann</label>
+            <input id="teacher-check-code" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Code eingeben">
+            <button class="btn btn-primary teacher-check-confirm" id="confirm-teacher-check" type="button">Code prüfen und weiter</button>
+          </div>
+          <p class="teacher-code-feedback" id="teacher-code-feedback" role="status" aria-live="polite"></p>
+        </div>
+      </aside>
+      <div class="curiosity-card"><h3>Aber warum entstehen eigentlich unterschiedliche Bindungen?</h3><p>Was passiert mit den Atomen, wenn sich ein Metall und ein Nichtmetall verbinden?</p></div>
+      <div class="actions"><button class="btn btn-primary" id="complete-binding">Weiter → Was passiert bei einer Ionenbindung?</button></div>
+    </section>
+    <dialog class="binding-info-dialog" id="binding-info-dialog" aria-labelledby="binding-info-title">
+      <div class="binding-info-accent" id="binding-info-accent"></div>
+      <div class="binding-info-content"><p class="step-label">KURZ ERKLÄRT</p><h2 id="binding-info-title"></h2><p id="binding-info-text"></p><button class="btn" id="close-binding-info" type="button">Verstanden</button></div>
+    </dialog>
+  </main>
+  <script src="js/progress.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/bindungscode.js"></script>
+</body>
+</html>

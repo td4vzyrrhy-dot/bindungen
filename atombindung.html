@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Geteilte Elektronen · Atombindung</title>
+  <link rel="stylesheet" href="css/bindungen.css"><link rel="stylesheet" href="css/atombindung.css">
+<link rel="stylesheet" href="css/design-system.css"></head>
+<body>
+  <div data-navigation></div>
+  <!-- ==========================================
+       ATOMBINDUNG – GETEILTE ELEKTRONEN
+       ========================================== -->
+  <main class="container covalent-learning" id="covalent-learning">
+    <header class="mission-header">
+      <p class="eyebrow">ENTDECKEN</p><h1>Geteilte Elektronen</h1>
+      <p class="subtitle">Wie verbinden sich zwei Nichtmetalle miteinander?</p>
+      <p class="lead">Du weißt bereits: Treffen zwei Nichtmetalle aufeinander, entsteht eine Atombindung. Aber was passiert dabei mit ihren Außenelektronen?</p>
+      <ol class="covalent-path" aria-label="Dein Weg durch die Lerneinheit"><li>Entdecken</li><li>Teilen</li><li>Bauen</li><li>Prüfen</li><li>Anwenden</li></ol>
+      <p class="covalent-status" id="covalent-progress" role="status" aria-live="polite"></p>
+    </header>
+    <noscript><p class="covalent-card">Bitte aktiviere JavaScript, um Elektronen zu teilen und Moleküle zu bauen.</p></noscript>
+    <section class="covalent-card electron-dilemma" aria-labelledby="dilemma-title">
+      <p class="step-label">01 · ENTDECKEN</p><h2 id="dilemma-title">Zwei Atome. Eine offene Frage.</h2>
+      <div class="hydrogen-preview" aria-label="Zwei einzelne Wasserstoffatome, jeweils mit einem Elektron auf der ersten Schale">
+        <div class="atom-shell-card"><div class="preview-shell"><strong>H</strong><i aria-hidden="true"></i></div><span>1 Elektron · Platz für 2</span></div>
+        <span class="preview-distance" aria-hidden="true">H · &nbsp; &nbsp; · H</span>
+        <div class="atom-shell-card"><div class="preview-shell"><strong>H</strong><i aria-hidden="true"></i></div><span>1 Elektron · Platz für 2</span></div>
+      </div>
+      <fieldset class="covalent-quiz" data-quiz="hydrogenQuestion"><legend>Was fehlt jedem Wasserstoffatom für eine voll besetzte erste Schale?</legend><div class="covalent-options"><button type="button" data-answer="1">1 Elektron</button><button type="button" data-answer="2">2 Elektronen</button><button type="button" data-answer="7">7 Elektronen</button></div><p class="covalent-feedback" role="status" aria-live="polite"></p></fieldset>
+      <fieldset class="covalent-quiz" id="hydrogen-idea" data-quiz="hydrogenIdea" hidden><legend>Was könnten die beiden Wasserstoffatome tun?</legend><div class="covalent-options stacked"><button type="button" data-answer="transfer">Ein Atom gibt sein Elektron vollständig an das andere ab.</button><button type="button" data-answer="share">Beide Atome nutzen ihre Elektronen gemeinsam.</button><button type="button" data-answer="lose">Beide Atome geben ihre Elektronen ab.</button></div><p class="covalent-feedback" role="status" aria-live="polite"></p></fieldset>
+    </section>
+    <section class="covalent-card" id="hydrogen-sharing" aria-labelledby="sharing-title" hidden>
+      <p class="step-label">02 · TEILEN</p><h2 id="sharing-title">Ein Paar für beide</h2>
+      <p>Tippe ein Elektron an und danach auf die Mitte. Wiederhole das mit dem zweiten Elektron.</p><div data-sharing="H"></div>
+      <p class="model-note">Vereinfachtes Schulmodell: Die Punkte stehen für Elektronen. Elektronen sitzen nicht unbeweglich an diesen Stellen.</p>
+    </section>
+    <section class="covalent-card covalent-definition" id="covalent-definition" aria-labelledby="definition-title" hidden>
+      <p class="step-label">DEINE ENTDECKUNG HAT EINEN NAMEN</p><h2 id="definition-title">ATOMBINDUNG</h2>
+      <p class="definition-text">Wenn Nichtmetallatome ein oder mehrere Elektronenpaare gemeinsam nutzen, entsteht eine Atombindung.</p>
+      <p>Sie wird auch <strong>Elektronenpaarbindung</strong> genannt.</p>
+      <div class="notation-transition" aria-label="H Doppelpunkt H wird zu H Bindungsstrich H"><span>H : H</span><span aria-hidden="true">→</span><span>H — H</span></div><p>Ein Bindungsstrich steht für ein gemeinsames Elektronenpaar.</p>
+    </section>
+    <section class="covalent-card chlor-example" id="chlor-example" aria-labelledby="chlor-title" hidden>
+      <p class="step-label">03 · WEITERDENKEN</p><h2 id="chlor-title">Funktioniert das auch bei anderen Nichtmetallen?</h2>
+      <p>Jedes Chloratom besitzt <strong>7 Außenelektronen</strong>. Sechs davon sind hier zu drei freien Paaren angeordnet; eines ist ungepaart.</p><div data-sharing="Cl"></div>
+      <fieldset class="covalent-quiz" data-quiz="chlorineQuestion"><legend>Wie viele Elektronen fehlen jedem Chloratom zur voll besetzten Außenschale?</legend><div class="covalent-options"><button type="button" data-answer="1">1 Elektron</button><button type="button" data-answer="2">2 Elektronen</button><button type="button" data-answer="7">7 Elektronen</button></div><p class="covalent-feedback" role="status" aria-live="polite"></p></fieldset>
+    </section>
+    <section class="covalent-card partner-activity" id="partner-activity" aria-labelledby="partner-title" hidden>
+      <p class="step-label">04 · PARTNER FINDEN</p><h2 id="partner-title">Welche Bindung entsteht?</h2>
+      <p>Finde Atome, die sich durch gemeinsame Elektronen verbinden können. Tippe zwei Atome an und verbinde anschließend auch die übrigen.</p>
+      <h3 class="partner-group-title">Wähle zwei Atome</h3><div class="partner-atoms" id="partner-atoms"></div><h3 class="partner-group-title results-title">Diese Moleküle entstehen</h3><div class="partner-results" id="partner-results"></div>
+      <p class="covalent-feedback" id="partner-feedback" role="status" aria-live="polite"></p><button class="btn" type="button" id="partner-reset">Andere Kombination ausprobieren</button>
+    </section>
+    <section class="covalent-card molecule-builder" id="molecule-builder" aria-labelledby="builder-title" hidden>
+      <p class="step-label">05 · BAUEN &amp; DURCHSCHAUEN</p><h2 id="builder-title">Baue ein Molekül</h2>
+      <p>Klicke an und baue das Molekül. Baue nacheinander drei Moleküle: H₂, Cl₂ und H₂O. Ein Molekül besteht aus miteinander verbundenen Atomen. Verteile neben den gemeinsamen Elektronenpaaren auch die freien Elektronenpaare an den Atomen. Bei H₂O braucht der Sauerstoff zusätzlich zwei freie Elektronenpaare.</p>
+      <div class="task-tabs" id="builder-tasks" aria-label="Bauaufträge"></div><div class="task-heading"><h3 id="builder-task-title"></h3><span class="formula-badge" id="builder-formula"></span></div>
+      <p class="model-note">Die Anordnung zeigt die Verbindungen, nicht die räumliche Gestalt oder die Bindungswinkel.</p>
+      <div id="builder-editor"></div><button type="button" class="btn btn-primary" id="builder-next" hidden>Nächster Bauauftrag →</button><button type="button" class="btn btn-primary" id="builder-continue" hidden>Weiter →</button>
+    </section>
+    <section class="covalent-card bond-number-match" id="bond-number-match" aria-labelledby="matching-title" hidden>
+      <p class="step-label">06 · PRÜFEN</p><h2 id="matching-title">Wer braucht wie viele Partner?</h2>
+      <p>Tippe eine Atomkarte an und danach die passende Bindungszahl. Die beiden Ziele mit „1 Bindung“ sind gleichwertig.</p>
+      <div class="matching-grid" id="matching-atoms"></div><div class="matching-grid" id="matching-targets"></div><p class="covalent-feedback" id="matching-feedback" role="status" aria-live="polite"></p>
+    </section>
+    <section class="covalent-card bond-comparison" id="bond-comparison" aria-labelledby="comparison-title" hidden>
+      <p class="step-label">07 · VERGLEICHEN</p><h2 id="comparison-title">Übertragen oder gemeinsam nutzen?</h2>
+      <div class="comparison-grid">
+        <article class="comparison-ionic"><h3>IONENBINDUNG</h3><div class="comparison-motion transfer-motion" aria-label="Ein Elektron wandert von Natrium zu Chlor"><b>Na</b><span aria-hidden="true">● →</span><b>Cl</b></div><p><strong>Elektronen werden übertragen.</strong></p><p>Metall + Nichtmetall</p></article>
+        <article class="comparison-covalent"><h3>ATOMBINDUNG</h3><div class="comparison-motion share-motion" aria-label="Zwei Wasserstoffatome nutzen ein Elektronenpaar gemeinsam"><b>H</b><span aria-hidden="true">● ●</span><b>H</b></div><p><strong>Elektronen werden gemeinsam genutzt.</strong></p><p>Nichtmetall + Nichtmetall</p></article>
+      </div>
+      <fieldset class="covalent-quiz" data-quiz="comparison"><legend>Was ist der entscheidende Unterschied?</legend><div class="covalent-options stacked"><button type="button" data-answer="different">Bei der Ionenbindung werden Elektronen übertragen, bei der Atombindung gemeinsam genutzt.</button><button type="button" data-answer="transfer">Bei beiden Bindungen werden Elektronen vollständig übertragen.</button><button type="button" data-answer="ions">Bei der Atombindung entstehen immer positive und negative Ionen.</button></div><p class="covalent-feedback" role="status" aria-live="polite"></p></fieldset>
+    </section>
+    <section class="covalent-card molecule-repair" id="molecule-repair" aria-labelledby="repair-title" hidden>
+      <p class="step-label">08 · ANWENDEN</p><h2 id="repair-title">Molekül-Werkstatt</h2><p>Bei diesen Molekülen stimmt etwas nicht. Repariere sie.</p>
+      <div class="task-tabs" id="repair-tasks" aria-label="Reparaturaufträge"></div><div class="task-heading"><h3 id="repair-task-title"></h3><span class="formula-badge" id="repair-formula"></span></div>
+      <div id="repair-editor"></div><button type="button" class="btn btn-primary" id="repair-next" hidden>Nächste Reparatur →</button>
+    </section>
+    <section class="covalent-card covalent-summary" id="covalent-summary" aria-labelledby="summary-title" hidden>
+      <p class="step-label">ZUSAMMENHANG ERKANNT</p><h2 id="summary-title">Aus einzelnen Atomen werden Moleküle.</h2><p>Du kannst jetzt erklären, wie Nichtmetallatome durch gemeinsame Elektronenpaare Moleküle bilden.</p>
+      <div class="covalent-takeaway">
+        <h3>MERKSATZ FÜR DEIN HEFT</h3>
+        <p><strong>Übertrage die Überschrift „Die Atombindung“ und den folgenden Merksatz in dein Heft.</strong></p>
+        <p>Bei einer <strong>Atombindung (Elektronenpaarbindung)</strong> nutzen Nichtmetallatome ein oder mehrere Elektronenpaare gemeinsam. Ein gemeinsames Elektronenpaar entspricht einer Bindung und wird durch einen Bindungsstrich dargestellt. Die gemeinsam genutzten Elektronen helfen den Atomen, eine voll besetzte Außenschale zu erreichen.</p><dl><dt>Nichtmetall + Nichtmetall</dt><dd>→ Atombindung</dd><dt>Gemeinsames Elektronenpaar</dt><dd>→ eine Bindung</dd><dt>Gemeinsam genutzte Elektronen</dt><dd>→ helfen beim Erreichen einer voll besetzten Außenschale</dd></dl></div>
+      <div class="notation-transition" aria-label="Zwei Schreibweisen: H Doppelpunkt H und H Bindungsstrich H"><span>H : H</span><span aria-hidden="true">→</span><span>H — H</span></div><h3>Wie stellen wir die Bindungen übersichtlich dar?</h3><p>Wir wiederholen als Nächstes die Lewis-Schreibweise, da ihr sie bereits kennt.</p><a class="btn btn-primary" href="lewis.html">Weiter → Lewis-Schreibweise wiederholen</a>
+    </section>
+  </main>
+  <script src="js/progress.js"></script><script src="js/navigation.js"></script><script src="js/atombindung.js"></script>
+</body>
+</html>
+∏ˇ∏

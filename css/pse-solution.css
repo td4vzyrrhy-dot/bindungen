@@ -1,0 +1,13 @@
+/* Lösung direkt im bereits bearbeiteten PSE. */
+#pse-grid.fully-revealed:not(.location-mode) .periodic-choice[data-type="metal"]{background:var(--metal);border-color:#3979bf;color:#fff}
+#pse-grid.fully-revealed:not(.location-mode) .periodic-choice[data-type="semi"]{background:var(--semi);border-color:#718f81;color:#fff}
+#pse-grid.fully-revealed:not(.location-mode) .periodic-choice[data-type="nonmetal"]{background:var(--nonmetal);border-color:#d39a2d;color:#5d430e}
+#pse-grid.fully-revealed:not(.location-mode) .periodic-choice{opacity:1;cursor:default;box-shadow:none;transform:none}
+.pse-color-key[hidden]{display:none}
+.pse-color-key{margin:16px 0;padding:18px;background:var(--surface);border-radius:12px}
+.pse-color-key p{margin:0 0 12px}.pse-color-key p:last-child{margin:12px 0 0;font-size:.9rem}
+.pse-color-legend{display:flex;flex-wrap:wrap;gap:10px}
+.pse-color-legend span{padding:8px 14px;border:1px solid;border-radius:8px;font-weight:700}
+.pse-color-legend [data-category="metal"]{background:var(--metal);border-color:#3979bf;color:#fff}
+.pse-color-legend [data-category="semi"]{background:var(--semi);border-color:#718f81;color:#fff}
+.pse-color-legend [data-category="nonmetal"]{background:var(--nonmetal);border-color:#d39a2d;color:#5d430e}

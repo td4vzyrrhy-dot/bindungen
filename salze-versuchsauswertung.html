@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Auswertung der Salzversuche</title>
+  <link rel="stylesheet" href="css/bindungen.css">
+<link rel="stylesheet" href="css/design-system.css"></head>
+<body>
+  <div data-navigation></div>
+  <main class="container experiment-evaluation">
+    <header class="mission-header">
+      <p class="eyebrow">AUSWERTEN · SALZ UNTER DER LUPE</p>
+      <h1>Ergebnisse und Erklärungen</h1>
+      <p class="subtitle">Vergleiche deine Beobachtungen mit den Versuchsergebnissen und den Erklärungen auf Teilchenebene.</p>
+    </header>
+
+    <section class="evaluation-card">
+      <p class="step-label">VERSUCH 1 · BETRACHTUNG DER SALZKRISTALLE</p>
+      <h2>Wie sieht Salz aus?</h2>
+      <div class="student-observation"><strong>Deine Beobachtung</strong><p data-saved-observation="crystal"></p></div>
+      <div class="evaluation-answer"><h3>Ergebnis</h3><p>Die Salzkörner besitzen häufig regelmäßige, kantige und würfelförmige Formen.</p></div>
+      <div class="evaluation-explanation"><h3>Erklärung auf Teilchenebene</h3><div class="crystal-zoom-visual"><span class="small-crystal"></span><b>↓ Zoom</b><span class="tiny-lattice" data-evaluation-lattice></span></div><p>In einem Salzkristall sind positiv und negativ geladene Ionen regelmäßig in einem Ionengitter angeordnet. Diese geordnete Anordnung setzt sich im gesamten Kristall fort und führt zu seiner regelmäßigen äußeren Form.</p></div>
+    </section>
+
+    <section class="evaluation-card">
+      <p class="step-label">VERSUCH 2 · SALZ IN WASSER</p>
+      <h2>Was passiert mit Salz in Wasser?</h2>
+      <div class="student-observation"><strong>Deine Beobachtung</strong><p data-saved-observation="solubility"></p></div>
+      <div class="evaluation-answer"><h3>Ergebnis</h3><p>Beim Rühren werden die Salzkristalle immer kleiner und sind schließlich nicht mehr sichtbar. Das Salz hat sich im Wasser gelöst.</p></div>
+      <div class="evaluation-explanation"><h3>Erklärung auf Teilchenebene</h3><div class="dissolve-stage"><span class="solution-lattice" data-evaluation-lattice></span><b>→ Wasser →</b><span class="free-ions"><i>Na<sup>+</sup></i><i>Cl<sup>−</sup></i><i>Na<sup>+</sup></i><i>Cl<sup>−</sup></i></span></div><p>Die Wassermoleküle lösen die Ionen aus dem Ionengitter. Die Natrium-Ionen und Chlorid-Ionen verteilen sich im Wasser und können sich dort frei bewegen.</p></div>
+    </section>
+
+    <section class="evaluation-card">
+      <p class="step-label">VERSUCH 3 · ELEKTRISCHE LEITFÄHIGKEIT</p>
+      <h2>Wann leitet Salz elektrischen Strom?</h2>
+      <div class="student-observation"><strong>Deine Beobachtung</strong><p data-saved-observation="conductivity"></p></div>
+      <div class="evaluation-answer"><h3>Ergebnis</h3><p>Festes Kochsalz und destilliertes Wasser leiten unter diesen Versuchsbedingungen nicht. Bei der Kochsalzlösung reagiert die Anzeige des Leitfähigkeitsprüfers.</p></div>
+      <div class="evaluation-explanation"><h3>Erklärung auf Teilchenebene</h3><div class="conductivity-simulation"><article><h4>Festes Salz</h4><div class="simulation-box fixed-ions" data-evaluation-lattice></div><div class="lamp" id="evaluation-solid-lamp">○</div><button class="btn" type="button" data-evaluation-voltage="solid">Spannung einschalten</button><small id="evaluation-solid-current"></small></article><article><h4>Salzlösung</h4><div class="simulation-box moving-ions"><i>Na<sup>+</sup></i><i>Cl<sup>−</sup></i><i>Na<sup>+</sup></i><i>Cl<sup>−</sup></i><i>Na<sup>+</sup></i><i>Cl<sup>−</sup></i></div><div class="lamp" id="evaluation-solution-lamp">○</div><button class="btn" type="button" data-evaluation-voltage="solution">Spannung einschalten</button><small id="evaluation-solution-current"></small></article></div><p>Im festen Salz sitzen die Ionen an festen Plätzen im Ionengitter und können keine Ladung transportieren. In der Salzlösung sind die Ionen frei beweglich. Sie transportieren elektrische Ladung durch die Lösung.</p></div>
+    </section>
+
+    <section class="evaluation-card">
+      <p class="step-label">VERSUCH 4 · SPRÖDIGKEIT EINES SALZKRISTALLS</p>
+      <h2>Warum zerbricht ein Salzkristall bei Belastung?</h2>
+      <div class="student-observation"><h3>Deine Beobachtung</h3><p data-saved-observation="brittleness"></p></div>
+      <div class="evaluation-answer"><h3>Ergebnis</h3><p>Der Salzkristall ist hart, lässt sich aber nicht dauerhaft verformen. Bei ausreichend großer Belastung bricht er.</p></div>
+      <div class="evaluation-explanation"><h3>Erklärung auf Teilchenebene</h3><div class="brittleness-simulation" id="evaluation-brittleness"><div class="brittle-half top" data-evaluation-brittle-row></div><div class="brittle-half bottom" data-evaluation-brittle-row></div><div class="crack-line"></div></div><button class="btn btn-secondary evaluation-force-button" id="evaluation-apply-force" type="button">Kraft auf das Ionengitter ausüben</button><p>Durch die Kraft werden Ebenen des Ionengitters gegeneinander verschoben. Dadurch geraten gleichnamig geladene Ionen nebeneinander. Sie stoßen sich stark ab und der Kristall bricht.</p></div>
+    </section>
+
+    <section class="evaluation-next">
+      <p class="step-label">VERSUCHE AUSGEWERTET</p>
+      <h2>Entdecke jetzt die Eigenschaften der Salze.</h2>
+      <a class="btn btn-primary" href="salze-eigenschaften.html">Weiter → Eigenschaften der Salze</a>
+    </section>
+  </main>
+  <script src="js/progress.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/salze-auswertung.js"></script>
+</body>
+</html>

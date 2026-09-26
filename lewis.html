@@ -1,0 +1,94 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vom Elektron zur Lewis-Formel · Chemische Bindungen</title><link rel="stylesheet" href="css/bindungen.css"><link rel="stylesheet" href="css/design-system.css"></head><body><div data-navigation></div>
+<!-- ==========================================
+     LEWIS-SCHREIBWEISE – VOM ELEKTRON ZUR FORMEL
+     ========================================== -->
+<main class="container lewis-learning" id="lewis-learning">
+  <header class="mission-header">
+    <p class="eyebrow">DARSTELLEN</p><h1>Vom Elektron zur Lewis-Formel</h1>
+    <p class="subtitle">Wie können wir Atombindungen einfach darstellen?</p>
+    <p class="lead">Du weißt bereits, dass sich Nichtmetallatome Elektronenpaare teilen. Aber müssen wir dafür jedes Mal das gesamte Schalenmodell zeichnen?</p>
+    <p><strong>Finde eine einfachere Darstellung.</strong></p>
+    <ol class="lewis-path" aria-label="Dein Lernweg"><li>Erkennen</li><li>Darstellen</li><li>Bauen</li><li>Prüfen</li><li>Anwenden</li></ol>
+    <p id="lewis-progress" class="lewis-progress" role="status" aria-live="polite"></p>
+  </header>
+  <noscript><p>Aktiviere JavaScript, um die interaktiven Lewis-Aufgaben zu bearbeiten.</p></noscript>
+
+  <section class="lewis-card" aria-labelledby="lewis-intro-title">
+    <p class="step-label">01 · ERKENNEN</p><h2 id="lewis-intro-title">Was brauchen wir wirklich?</h2>
+    <div class="lewis-intro-model" id="lewis-intro-model"><div id="lewis-h-shell" class="shell-preview"></div><span class="lewis-model-arrow" aria-hidden="true">→</span><div><strong class="lewis-large-symbol">H</strong><p>1 Elektron</p></div></div>
+    <div data-quiz="outer"></div>
+    <div class="lewis-rule" id="lewis-symbol-intro" hidden><p class="step-label">LEWIS-SYMBOL</p><div id="lewis-h-symbol"></div><p>In der Lewis-Schreibweise werden nur das Elementsymbol und die Außenelektronen dargestellt.</p></div>
+  </section>
+
+  <section class="lewis-card lewis-translator" id="lewis-translator" aria-labelledby="lewis-translator-title" hidden>
+    <p class="step-label">02 · DARSTELLEN</p><h2 id="lewis-translator-title">Lewis-Übersetzer</h2>
+    <p>Übersetze das Schalenmodell: Setze die Außenelektronen als Punkte um das Elementsymbol.</p>
+    <aside class="lewis-rule"><p class="step-label">ZWEI PUNKTE WERDEN ZU EINEM STRICH</p><p><strong>Zwei gepaarte Elektronen bilden ein Elektronenpaar. Die beiden Punkte können zu einem Strich zusammengefasst werden: •• → —.</strong> Ein einzelnes, ungepaartes Elektron bleibt ein Punkt.</p><p>Steht der Strich außen an einem Atom, zeigt er ein <strong>freies Elektronenpaar</strong>. Zwischen zwei Atomen steht er für ein <strong>gemeinsames Elektronenpaar</strong> und damit für eine Bindung.</p><p>Im Übersetzer setzt du zunächst die Punkte. Beim Zeichnen in deinem Heft kannst du jedes Elektronenpaar als Strich darstellen.</p></aside>
+    <div class="lewis-task-tabs" id="lewis-translator-tabs" aria-label="Elemente im Übersetzer"></div>
+    <div class="translator-layout"><div class="shell-preview" id="translator-shell"></div><div id="translator-editor"></div></div>
+    <button type="button" class="btn" id="translator-next" hidden>Nächstes Element →</button>
+    <div id="lewis-rule-question" hidden><div data-quiz="symbolRule"></div></div>
+    <aside class="lewis-rule" id="lewis-first-rule" hidden><p class="step-label">ERSTE REGEL</p><p>In der Lewis-Schreibweise werden die Außenelektronen um das Elementsymbol dargestellt. Ein Punkt steht für ein einzelnes Elektron. Zwei gepaarte Elektronen können als zwei Punkte oder als ein Strich dargestellt werden.</p></aside>
+  </section>
+
+  <section class="lewis-card" id="lewis-hydrogen" aria-labelledby="lewis-hydrogen-title" hidden>
+    <p class="step-label">03 · VERBINDEN</p><h2 id="lewis-hydrogen-title">Aus zwei Elektronen wird eine Bindung</h2>
+    <div data-quiz="hydrogenIdea"></div><div id="lewis-h-sharing"></div>
+    <aside class="lewis-rule" id="lewis-bond-rule" hidden><p class="step-label">BINDUNGSSTRICH ENTDECKT</p><p><strong>Ein Bindungsstrich steht für EIN gemeinsames Elektronenpaar.</strong></p></aside>
+  </section>
+
+  <section class="lewis-card" id="lewis-chlorine" aria-labelledby="lewis-chlorine-title" hidden>
+    <p class="step-label">04 · GENAU HINSEHEN</p><h2 id="lewis-chlorine-title">Welche Elektronen bleiben am Atom?</h2>
+    <p>Erstelle zunächst die Lewis-Symbole für zwei Chloratome. Jedes besitzt 7 Außenelektronen.</p>
+    <div class="chlor-symbol-editors"><div id="chlor-symbol-left"></div><div id="chlor-symbol-right"></div></div>
+    <div id="lewis-cl-sharing" hidden></div>
+    <div id="lewis-lone-question" hidden><div data-quiz="loneRule"></div></div>
+    <aside class="lewis-rule" id="lewis-second-rule" hidden><p class="step-label">ZWEITE REGEL</p><p>Ein gemeinsames Elektronenpaar zwischen zwei Atomen wird als Bindungsstrich dargestellt.</p><p>Elektronenpaare, die nicht an einer Bindung beteiligt sind, heißen <strong>freie Elektronenpaare</strong>.</p></aside>
+  </section>
+
+  <section class="lewis-card lewis-builder" id="lewis-builder" aria-labelledby="lewis-builder-title" hidden>
+    <p class="step-label">05 · SELBST BAUEN</p><h2 id="lewis-builder-title">Lewis-Baukasten</h2>
+    <p>Klicke an und baue die Lewis-Formel. Ergänze auch die Elektronen, die nicht an Bindungen beteiligt sind.</p><p><strong>Denke auch an freie Elektronenpaare:</strong> Bei Wasser (H₂O) werden neben den beiden O–H-Bindungen am Sauerstoff zusätzlich zwei freie Elektronenpaare eingezeichnet.</p>
+    <aside class="notebook-copy-card lewis-checklist" aria-labelledby="lewis-notebook-method-title"><div class="notebook-symbol" aria-hidden="true">✎</div><div><p class="step-label">HEFTEINTRAG · LEWIS-FORMELN ERSTELLEN</p><h3 id="lewis-notebook-method-title">Regeln zum Erstellen von Lewis-Formeln</h3><p><strong>Übertrage die folgenden Regeln vollständig in dein Heft. Schreibe als Überschrift „Regeln zum Erstellen von Lewis-Formeln“. Beginne anschließend mit den Molekül-Aufgaben.</strong></p><ol id="lewis-checklist-steps"></ol><small>Merke: Ein Strich steht für zwei Elektronen. Bei der Prüfung einer Außenschale zählt ein gemeinsames Elektronenpaar für beide verbundenen Atome. Bei der Gesamtzahl aller Elektronen zähle ich jedes Paar nur einmal.</small></div></aside>
+    <aside class="lewis-rule" aria-labelledby="lewis-builder-help-title"><h3 id="lewis-builder-help-title">So benutzt du Baukasten und Oktett-Scanner</h3><ol><li><strong>Atome einsetzen:</strong> Lies die gesuchte Molekülformel. Tippe ein Element im Vorrat an und danach einen freien Platz mit einem Pluszeichen. Setze so alle benötigten Atome ein.</li><li><strong>Atome verbinden:</strong> Tippe zwei Atome an und klicke auf <strong>„Gemeinsames Paar“</strong>. Zwischen ihnen erscheint ein Bindungsstrich.</li><li><strong>Freie Elektronen ergänzen:</strong> Wähle ein einzelnes Atom. Klicke auf <strong>„Freies Elektronenpaar“</strong> und danach auf eine Seite, zum Beispiel „oben“. Dort erscheinen zwei Elektronen. Ein ausgewähltes Atom kannst du durch erneutes Antippen abwählen.</li><li><strong>Überprüfen:</strong> Klicke auf <strong>„Oktett-Scanner starten“</strong>. Er zählt für jedes Atom die Bindungselektronen und die freien Elektronen. Wasserstoff braucht 2, die anderen Atome in diesen Aufgaben brauchen 8 Elektronen in ihrer Außenschale.</li><li><strong>Verbessern:</strong> Grün mit ✓ bedeutet: Die Elektronenzahl stimmt. Rot mit ✗ zeigt, was fehlt oder zu viel ist. Ändere deine Zeichnung und starte den Scanner erneut. Lies auch die Gesamtrückmeldung: Die Atomzahlen und Bindungen müssen ebenfalls stimmen.</li><li><strong>Abschließen:</strong> Klicke auf <strong>„Lewis-Struktur prüfen“</strong>. Bei „✓ RICHTIG!“ kannst du mit „Nächstes Molekül“ weiterarbeiten. Nach dem letzten Molekül wählst du „Weiter → Muster entdecken“.</li></ol><p><strong>Etwas falsch gesetzt?</strong> Wähle ein Atom und „Atom entfernen“. Freie Elektronen löschst du mit „Elektron entfernen“ und einem Klick auf die betreffende Seite. Eine Bindung kannst du antippen und mit „Ein gemeinsames Paar entfernen“ bearbeiten.</p></aside>
+    <p class="lewis-model-note">Die Anordnung zeigt die Verbindungen und Außenelektronen, nicht die räumliche Molekülform oder die Bindungswinkel.</p>
+    <div id="lewis-build-tabs" class="lewis-task-tabs" aria-label="Molekül-Aufträge"></div>
+    <div class="lewis-task-heading"><h3 id="lewis-build-title"></h3><span class="lewis-formula" id="lewis-build-formula"></span></div>
+    <div id="lewis-build-editor"></div><button type="button" class="btn btn-primary" id="lewis-build-next" hidden>Nächstes Molekül →</button>
+    <button type="button" class="btn btn-primary" id="lewis-build-continue" hidden>Weiter → Muster entdecken</button>
+  </section>
+
+  <section class="lewis-card bond-pattern" id="lewis-pattern" aria-labelledby="lewis-pattern-title" hidden>
+    <p class="step-label">06 · MUSTER ENTDECKEN</p><h2 id="lewis-pattern-title">Wie viele gemeinsame Paare?</h2>
+    <p>Erkennst du ein Muster? Tippe eine Atomkarte an und ordne eine typische Bindungszahl zu.</p>
+    <div class="lewis-matching-grid" id="lewis-pattern-atoms"></div><div class="lewis-matching-grid" id="lewis-pattern-targets"></div>
+    <p class="lewis-feedback" id="lewis-pattern-feedback" role="status" aria-live="polite"></p>
+    <aside class="lewis-rule" id="lewis-pattern-rule" hidden><p>Je mehr Elektronen zur voll besetzten Außenschale fehlen, desto mehr gemeinsame Elektronenpaare werden häufig benötigt.</p><p>Das ist eine Orientierung im vereinfachten Schulmodell für diese Beispiele, keine allgemeingültige Regel für alle Verbindungen.</p></aside>
+  </section>
+
+  <section class="lewis-card error-detective" id="lewis-detective" aria-labelledby="lewis-detective-title" hidden>
+    <p class="step-label">07 · REPARIEREN</p><h2 id="lewis-detective-title">Lewis-Fehlerdetektiv</h2>
+    <p>Klicke die fehlerhafte Stelle an und repariere die Lewis-Struktur. Der Scanner hilft dir beim Zählen.</p>
+    <div class="lewis-task-tabs" id="lewis-repair-tabs" aria-label="Fehlerdetektiv-Aufgaben"></div>
+    <div class="lewis-task-heading"><h3 id="lewis-repair-title"></h3><span class="lewis-formula" id="lewis-repair-formula"></span></div>
+    <div id="lewis-repair-editor"></div><button type="button" class="btn btn-primary" id="lewis-repair-next" hidden>Nächster Fall →</button>
+  </section>
+
+  <section class="lewis-card lewis-challenge" id="lewis-challenge" aria-labelledby="lewis-challenge-title" hidden>
+    <p class="step-label">08 · ANWENDEN</p><h2 id="lewis-challenge-title">Jetzt ohne Hilfe</h2>
+    <p>Drei zufällig ausgewählte Moleküle. Baue die Lewis-Strukturen selbstständig. Nach einem Fehlversuch kannst du einen Hinweis anfordern.</p>
+    <div class="lewis-task-tabs" id="lewis-challenge-tabs" aria-label="Challenge-Aufgaben"></div>
+    <div class="lewis-task-heading"><h3 id="lewis-challenge-task-title"></h3><span class="lewis-formula" id="lewis-challenge-formula"></span></div>
+    <div id="lewis-challenge-editor"></div><button type="button" class="btn btn-primary" id="lewis-challenge-next" hidden>Nächstes Molekül →</button>
+  </section>
+
+  <section class="lewis-card lewis-summary" id="lewis-summary" aria-labelledby="lewis-summary-title" hidden>
+    <p class="step-label">DARSTELLUNG VERSTANDEN</p><h2 id="lewis-summary-title">Vom Punkt zur vollständigen Formel.</h2>
+    <p>Du kannst jetzt Außenelektronen, Bindungen und freie Elektronenpaare in der Lewis-Schreibweise darstellen.</p>
+    <aside class="lewis-rule"><h3>DAS SOLLTEST DU MITNEHMEN</h3><p><strong>Übertrage den Merksatz unter der Überschrift „Die Lewis-Schreibweise“ in dein Heft.</strong></p><p>Die Lewis-Schreibweise zeigt die Außenelektronen eines Atoms. Einzelne Elektronen werden als Punkte dargestellt. Zwei gepaarte Elektronen bilden ein Elektronenpaar und können als ein Strich dargestellt werden. Ein Strich außen am Atom steht für ein freies Elektronenpaar. Ein Bindungsstrich steht für ein gemeinsames Elektronenpaar zwischen zwei Atomen. Elektronenpaare, die nicht an einer Bindung beteiligt sind, heißen freie Elektronenpaare.</p><dl class="lewis-legend"><dt>•</dt><dd>einzelnes Außenelektron</dd><dt>••</dt><dd>Elektronenpaar</dd><dt>—</dt><dd>ein Elektronenpaar: außen am Atom ein freies Paar, zwischen zwei Atomen eine Einfachbindung</dd><dt>=</dt><dd>zwei gemeinsame Elektronenpaare / Doppelbindung</dd></dl></aside>
+
+    <div class="lewis-finish-actions"><a class="btn btn-primary" href="elektronegativitaet.html">Weiter → Elektronegativität und polare Atombindung</a><button type="button" class="btn" id="lewis-new-challenge">Neue Challenge-Runde</button></div>
+  </section>
+  <footer class="lewis-reset"><button type="button" class="btn" id="lewis-reset">Lewis-Aufgaben zurücksetzen</button><p>Beginnt nur diese Übungen neu. Bereits erreichte Stationen und die übrigen Lernergebnisse bleiben gespeichert.</p><p class="lewis-feedback" id="lewis-reset-feedback" role="status" aria-live="polite"></p></footer>
+</main>
+<script src="js/progress.js"></script><script src="js/navigation.js"></script><script src="js/lewis.js"></script></body></html>

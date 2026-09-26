@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Die Landkarte der Elemente</title>
+  <link rel="stylesheet" href="css/bindungen.css">
+<link rel="stylesheet" href="css/design-system.css"><link rel="stylesheet" href="css/pse-solution.css"></head>
+<body>
+  <div data-navigation></div>
+  <main class="container discovery-station">
+    <header class="mission-header">
+      <p class="eyebrow">ENTDECKEN · PSE</p>
+      <h1>Die Landkarte der Elemente</h1>
+      <p class="subtitle">Metall oder Nichtmetall – erkennst du das Muster?</p>
+    </header>
+
+    <section class="discovery-card" aria-labelledby="pse-heading">
+      <div class="location-question" id="location-question" hidden>
+        <p class="step-label">ABSCHLUSSÜBUNG</p>
+        <h2>Wo bin ich?</h2>
+        <p>Schau auf die markierte Position im Periodensystem und entscheide, zu welchem Bereich das Element gehört.</p>
+        <strong class="location-progress" id="location-progress">Aufgabe 1 von 8</strong>
+        <div class="location-dots" id="location-dots" aria-hidden="true"></div>
+      </div>
+      <div class="station-heading">
+        <div>
+          <p class="step-label">SCHRITT 1 · ZUORDNEN</p>
+          <h2 id="pse-heading">Untersuche die Elemente</h2>
+          <p>Tippe auf beliebige Elemente und finde 8 Metalle, 8 Nichtmetalle und 5 Halbmetalle.</p>
+        </div>
+        <div class="category-counters" aria-live="polite">
+          <span class="metal-count"><strong id="metal-counter">0</strong>/8 Metalle</span>
+          <span class="nonmetal-count"><strong id="nonmetal-counter">0</strong>/8 Nichtmetalle</span>
+          <span class="semi-count"><strong id="semi-counter">0</strong>/5 Halbmetalle</span>
+        </div>
+      </div>
+
+      <div class="pse-scroll" aria-label="Vereinfachtes Periodensystem">
+        <div class="discovery-pse" id="pse-grid">
+          <button class="discovery-element" data-symbol="H" data-name="Wasserstoff" data-type="nonmetal" style="--group:1;--period:1"><span>H</span><small>Wasserstoff</small></button>
+          <button class="discovery-element" data-symbol="C" data-name="Kohlenstoff" data-type="nonmetal" style="--group:14;--period:2"><span>C</span><small>Kohlenstoff</small></button>
+          <button class="discovery-element" data-symbol="N" data-name="Stickstoff" data-type="nonmetal" style="--group:15;--period:2"><span>N</span><small>Stickstoff</small></button>
+          <button class="discovery-element" data-symbol="O" data-name="Sauerstoff" data-type="nonmetal" style="--group:16;--period:2"><span>O</span><small>Sauerstoff</small></button>
+          <button class="discovery-element" data-symbol="Na" data-name="Natrium" data-type="metal" style="--group:1;--period:3"><span>Na</span><small>Natrium</small></button>
+          <button class="discovery-element" data-symbol="Mg" data-name="Magnesium" data-type="metal" style="--group:2;--period:3"><span>Mg</span><small>Magnesium</small></button>
+          <button class="discovery-element" data-symbol="Al" data-name="Aluminium" data-type="metal" style="--group:13;--period:3"><span>Al</span><small>Aluminium</small></button>
+          <button class="discovery-element" data-symbol="Si" data-name="Silicium" data-type="semi" style="--group:14;--period:3"><span>Si</span><small>Silicium</small></button>
+          <button class="discovery-element" data-symbol="Cl" data-name="Chlor" data-type="nonmetal" style="--group:17;--period:3"><span>Cl</span><small>Chlor</small></button>
+          <button class="discovery-element" data-symbol="Ca" data-name="Calcium" data-type="metal" style="--group:2;--period:4"><span>Ca</span><small>Calcium</small></button>
+          <button class="discovery-element" data-symbol="Fe" data-name="Eisen" data-type="metal" style="--group:8;--period:4"><span>Fe</span><small>Eisen</small></button>
+          <button class="discovery-element" data-symbol="Cu" data-name="Kupfer" data-type="metal" style="--group:11;--period:4"><span>Cu</span><small>Kupfer</small></button>
+          <div class="pse-stair" id="pse-stair" aria-hidden="true"></div>
+          <button class="search-zone zone-left" data-zone="left" aria-label="Linken Bereich auswählen"></button>
+          <button class="search-zone zone-middle" data-zone="middle" aria-label="Mittleren Bereich auswählen"></button>
+          <button class="search-zone zone-right" data-zone="right" aria-label="Rechten oberen Bereich auswählen"></button>
+        </div>
+      </div>
+
+      <div class="pse-color-key" id="pse-color-key" hidden>
+        <p><strong>Zuordnung geschafft!</strong> Dein PSE zeigt jetzt alle Elemente in den richtigen Farben.</p>
+        <div class="pse-color-legend"><span data-category="metal">Blau · Metalle</span><span data-category="semi">Grün · Halbmetalle</span><span data-category="nonmetal">Gelb · Nichtmetalle</span></div>
+        <p><strong>Wasserstoff (H) ist ein Nichtmetall.</strong> Die beiden Reihen unten gehören zu den Metallen.</p>
+      </div>
+
+      <div class="element-popover" id="element-popover" hidden>
+        <p><strong id="selected-element">Element</strong> ist ein …</p>
+        <div class="element-choices">
+          <button data-choice="metal">METALL</button>
+          <button data-choice="nonmetal">NICHTMETALL</button>
+          <button data-choice="semi">HALBMETALL</button>
+        </div>
+      </div>
+      <div class="gentle-feedback" id="feedback" role="status" aria-live="polite"></div>
+      <div class="location-controls" id="location-controls" hidden>
+        <h3>Zu welchem Bereich gehört das markierte Element?</h3>
+        <div class="category-buttons">
+          <button class="category-button metal-answer" data-location-answer="metal">METALL</button>
+          <button class="category-button semi-answer" data-location-answer="semi">HALBMETALL</button>
+          <button class="category-button nonmetal-answer" data-location-answer="nonmetal">NICHTMETALL</button>
+        </div>
+        <div class="location-feedback" id="location-feedback" role="status" aria-live="polite"></div>
+        <button class="btn btn-primary next-location" id="next-location" type="button" hidden>Nächste Aufgabe</button>
+      </div>
+    </section>
+
+<section class="discovery-card reveal-section" id="pattern-task" hidden>
+      <p class="step-label">SCHRITT 2 · MUSTER ERKENNEN</p>
+      <h2>Was fällt dir auf?</h2>
+      <p>Wähle alle Aussagen aus, die stimmen.</p>
+      <div class="statement-list">
+        <label><input type="checkbox" value="metals-left"> <span>Metalle liegen überwiegend links und in der Mitte.</span></label>
+        <label><input type="checkbox" value="nonmetals-right"> <span>Nichtmetalle liegen überwiegend rechts oben.</span></label>
+        <label><input type="checkbox" value="metals-right"> <span>Alle Metalle liegen ganz rechts.</span></label>
+        <label><input type="checkbox" value="random"> <span>Metalle und Nichtmetalle sind zufällig verteilt.</span></label>
+      </div>
+      <div class="actions"><button class="btn btn-primary" id="check-pattern">Muster prüfen</button></div>
+      <div class="gentle-feedback" id="pattern-feedback" role="status" aria-live="polite"></div>
+    </section>
+
+    <aside class="hydrogen-note" id="hydrogen-note" hidden>
+      <span class="atom-badge">H</span>
+      <p><strong>Besonderheit Wasserstoff</strong><br>Achtung: Wasserstoff steht links im Periodensystem, gehört aber zu den Nichtmetallen.</p>
+    </aside>
+
+    <section class="discovery-card reveal-section" id="region-task" hidden>
+      <p class="step-label">SCHRITT 3 · ORIENTIEREN</p>
+      <h2 id="region-question">Du suchst ein Metall. In welchem Bereich würdest du zuerst suchen?</h2>
+      <p>Tippe direkt oben im Periodensystem auf einen Bereich.</p>
+      <div class="gentle-feedback" id="region-feedback" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="takeaway-card" id="takeaway" hidden>
+      <p class="step-label">DAS SOLLTEST DU MITNEHMEN</p>
+      <p>Metalle befinden sich überwiegend links und in der Mitte des Periodensystems. Nichtmetalle liegen überwiegend rechts oben. Zwischen beiden Bereichen liegen die Halbmetalle. Wasserstoff steht links, ist aber ein Nichtmetall.</p>
+      <div class="actions"><button class="btn btn-primary" id="finish">Zur Abschlussübung „Wo bin ich?“</button></div>
+    </section>
+
+    <section class="location-finish" id="location-finish" hidden>
+      <p class="step-label">AUSWERTUNG</p>
+      <h2>Karte entschlüsselt!</h2>
+      <p>Du kannst jetzt erkennen, wo Metalle, Halbmetalle und Nichtmetalle im Periodensystem liegen.</p>
+      <div class="takeaway-card">
+        <p class="step-label">DAS SOLLTEST DU MITNEHMEN</p>
+        <p>Metalle befinden sich überwiegend links und in der Mitte des Periodensystems. Nichtmetalle liegen überwiegend rechts oben. Halbmetalle befinden sich im Grenzbereich zwischen beiden. Wasserstoff ist eine Ausnahme: Er steht links, ist aber ein Nichtmetall.</p>
+      </div>
+      <div class="actions"><button class="btn btn-primary" id="complete-location">Weiter → Bindungsarten</button></div>
+    </section>
+
+    <dialog class="notebook-dialog" id="notebook-dialog" aria-labelledby="notebook-title">
+      <div class="notebook-dialog-inner">
+        <p class="step-label" id="notebook-title">MERKSATZ FÜR DEIN HEFT</p>
+        <p>Das Periodensystem ordnet alle bekannten chemischen Elemente nach ihrer Ordnungszahl. Elemente mit ähnlichen Eigenschaften stehen dabei häufig in derselben Gruppe. <strong>Metalle</strong> befinden sich überwiegend links und in der Mitte des Periodensystems, <strong>Nichtmetalle</strong> vor allem rechts oben. Dazwischen liegen einige <strong>Halbmetalle</strong>. Eine wichtige Ausnahme ist <strong>Wasserstoff</strong>: Er steht links, gehört aber zu den Nichtmetallen.</p>
+        <section class="pdf-download" aria-labelledby="pdf-task-title">
+          <div class="pdf-icon" aria-hidden="true">PDF</div>
+          <div>
+            <h2 id="pdf-task-title">Arbeitsauftrag</h2>
+            <p>Hast du den Merksatz in dein Heft übertragen? Lade anschließend das Periodensystem herunter und markiere die Elemente entsprechend als <strong>Metall</strong>, <strong>Nichtmetall</strong> oder <strong>Halbmetall</strong>.</p>
+            <a class="btn pdf-button" href="../Periodensystem.pdf" download="Periodensystem.pdf">Periodensystem.pdf herunterladen</a>
+          </div>
+        </section>
+        <div class="actions"><button class="btn btn-primary" id="close-notebook" type="button">Weiter erkunden</button></div>
+      </div>
+    </dialog>
+  </main>
+  <script src="js/progress.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/pse.js"></script>
+</body>
+</html>
