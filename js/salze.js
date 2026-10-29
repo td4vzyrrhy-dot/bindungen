@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const experimentsReviewed=Boolean(savedSaltProgress.salzVersucheAusgewertet&&savedSaltProgress.salzVersucheVersion===2);
   const state={crystal:experimentsReviewed,solubility:experimentsReviewed,conductivity:experimentsReviewed,reason:experimentsReviewed,brittle:experimentsReviewed,matches:new Set(),selectedProperty:null,checkIndex:0,finalTestIndex:0,...savedSaltState};
   state.matches=new Set(Array.isArray(savedSaltState.matches)?savedSaltState.matches:[]);
-  function persistSaltState(){const progress=BindungenProgress.loadProgress();progress.modules.salze=progress.modules.salze||{};progress.modules.salze.learningState={crystal:state.crystal,solubility:state.solubility,conductivity:state.conductivity,reason:state.reason,brittle:state.brittle,matches:[...state.matches],checkIndex:state.checkIndex,finalTestIndex:state.finalTestIndex};BindungenProgress.saveProgress(progress)}
+  function persistSaltState(){const progress=BindungenProgress.loadProgress();progress.modules.salze=progress.modules.salze||{};const observations=Object.fromEntries([...document.querySelectorAll('[data-experiment-note]')].map(field=>[field.dataset.experimentNote,field.value]));progress.modules.salze.learningState={crystal:state.crystal,solubility:state.solubility,conductivity:state.conductivity,reason:state.reason,brittle:state.brittle,matches:[...state.matches],checkIndex:state.checkIndex,finalTestIndex:state.finalTestIndex,observations};progress.salzVersuchsbeobachtungen={...(progress.salzVersuchsbeobachtungen||{}),...observations};BindungenProgress.saveProgress(progress)}
   if(savedSaltProgress.modules?.salze?.tasks?.experiments?.completed)console.log('[Progress Restore] Aufgabe wiederhergestellt: salze/experiments');
   const mini=[
     {q:'Warum besitzen Salze oft regelmäßige Kristallformen?',a:'regular',o:[['regular','wegen der regelmäßigen Anordnung der Ionen'],['round','weil alle Ionen kugelförmig sind'],['water','wegen des Wassers']]},
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       label.className='experiment-observation';
       label.innerHTML='<strong>Deine Beobachtung</strong><span>'+prompt+'</span><textarea data-experiment-note="'+name+'" rows="4" placeholder="Ich beobachte …"></textarea>';
       card.insertAdjacentElement('afterend',label);
-      label.querySelector('textarea').value=savedSaltProgress.salzVersuchsbeobachtungen?.[name]||'';
+      label.querySelector('textarea').value=savedSaltProgress.salzVersuchsbeobachtungen?.[name]||savedSaltProgress.modules?.salze?.learningState?.observations?.[name]||'';
     });
     ['#crystal-station','#solubility-station'].forEach(stationId=>{
       const question=document.querySelector(stationId+' .observation-question');
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     resultAction.className='experiment-result-action';
     resultAction.innerHTML='<p id="experiment-result-status">Trage zuerst deine Beobachtungen zu allen vier Versuchen ein.</p><button class="btn btn-primary" id="show-experiment-results" type="button" disabled>Ergebnisse und Erklärungen anzeigen</button>';
     document.querySelector('#brittleness-station').insertAdjacentElement('afterend',resultAction);
-    document.querySelectorAll('[data-experiment-note]').forEach(field=>field.addEventListener('input',checkObservationFields));
+    document.querySelectorAll('[data-experiment-note]').forEach(field=>{field.addEventListener('input',checkObservationFields);field.addEventListener('change',checkObservationFields)});
     document.querySelector('#show-experiment-results').addEventListener('click',showExperimentResults);
   }
   function checkObservationFields(){
@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelector('#start-salt-check').addEventListener('click',()=>{const dialog=document.querySelector('#salt-check-dialog');if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','')});
   document.querySelector('#confirm-salt-note').addEventListener('click',()=>{const dialog=document.querySelector('#salt-check-dialog');if(typeof dialog.close==='function')dialog.close();else dialog.removeAttribute('open');document.querySelector('#salt-summary').hidden=true;reveal('#salt-check');showMini()});
   addObservationFields();
+  window.addEventListener('beforeunload',persistSaltState);
   state.matches.forEach(property=>{
     document.querySelector('[data-property="'+property+'"]')?.classList.add('matched');
     document.querySelector('[data-property-target="'+property+'"]')?.classList.add('matched');

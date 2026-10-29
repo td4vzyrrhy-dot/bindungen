@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     Object.keys(atoms).forEach(symbol=>{if(!tasks['valence-'+symbol]?.completed)return;const group=document.querySelector('[data-valence="'+symbol+'"]');const button=[...(group?.querySelectorAll('button')||[])].find(item=>Number(item.textContent)===atoms[symbol].valence);if(button){button.classList.add('correct');group.querySelectorAll('button').forEach(item=>item.disabled=true);state.valence[symbol]=true;console.log('[Progress Restore] Aufgabe wiederhergestellt: ionenbindung/valence-'+symbol)}});
     if(Object.values(state.valence).every(Boolean))reveal('#noble-section');
     if(state.assignment.given&&state.assignment.received)reveal('#attraction-section');
-    if(tasks['electron-transfer']?.completed){document.querySelector('#na-electron')?.classList.add('transferred');document.querySelector('#cl-target')?.classList.add('filled');reveal('#ions-section')}
+    if(tasks['electron-transfer']?.completed){document.querySelector('#na-electron')?.classList.add('transferred');document.querySelector('#cl-target')?.classList.add('filled');updateTransferLabels(true);reveal('#ions-section')}
     if(tasks['attraction']?.completed)reveal('#lattice-section');
     if(tasks['lattice-final']?.completed)reveal('#magnesium-section');
     if(state.magnesium.Mg&&state.magnesium.O)document.querySelector('#magnesium-result').hidden=false;
@@ -90,6 +90,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(symbol==='Cl')content+='<button class="shell-electron electron-vacancy" id="cl-target" style="--shell:3;--angle:315deg" aria-label="Freie Position auf der Chlor-Außenschale">+</button>';
     host.innerHTML=content;
   }
+  function updateTransferLabels(transferred){
+    const cards=document.querySelectorAll('.transfer-shell-card');
+    if(cards[0]){const label=cards[0].querySelector('strong');const shells=cards[0].querySelector('span');if(label)label.textContent=transferred?'Natrium · Na⁺':'Natrium · Na';if(shells)shells.textContent=transferred?'2 | 8':'2 | 8 | 1';cards[0].setAttribute('aria-label',transferred?'Natrium-Ion Na⁺, Elektronenschalen 2 | 8':'Natrium-Atom Na, Elektronenschalen 2 | 8 | 1')}
+    if(cards[1]){const label=cards[1].querySelector('strong');const shells=cards[1].querySelector('span');if(label)label.textContent=transferred?'Chlor · Cl⁻':'Chlor · Cl';if(shells)shells.textContent=transferred?'2 | 8 | 8':'2 | 8 | 7';cards[1].setAttribute('aria-label',transferred?'Chlorid-Ion Cl⁻, Elektronenschalen 2 | 8 | 8':'Chlor-Atom Cl, Elektronenschalen 2 | 8 | 7')}
+  }
   document.querySelectorAll('[data-transfer-atom]').forEach(renderTransferShell);
 
   document.querySelectorAll('[data-valence] button').forEach(button=>button.addEventListener('click',()=>{
@@ -103,7 +108,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   const electron=document.querySelector('#na-electron'),target=document.querySelector('#cl-target');
   function selectElectron(){state.electronSelected=true;electron.classList.add('selected');persistIonic();feedback('#transfer-feedback','Elektron ausgewählt. Tippe jetzt auf die freie Position bei Chlor.',true)}
-  function transferElectron(){if(!state.electronSelected){feedback('#transfer-feedback','Tippe zuerst das Außenelektron bei Natrium an.');return}const from=electron.getBoundingClientRect(),to=target.getBoundingClientRect();const flying=document.createElement('span');flying.className='flying-electron';flying.textContent='e⁻';flying.style.left=from.left+'px';flying.style.top=from.top+'px';document.body.appendChild(flying);electron.classList.add('transferred');target.classList.add('filled');completeIonicTask('electron-transfer');requestAnimationFrame(()=>{flying.style.left=(to.left+to.width/2-from.width/2)+'px';flying.style.top=(to.top+to.height/2-from.height/2)+'px'});setTimeout(()=>{flying.remove()},800);feedback('#transfer-feedback','Natrium gibt ein Elektron ab. Chlor nimmt ein Elektron auf.',true);setTimeout(()=>reveal('#ions-section'),900)}
+  function transferElectron(){if(!state.electronSelected){feedback('#transfer-feedback','Tippe zuerst das Außenelektron bei Natrium an.');return}const from=electron.getBoundingClientRect(),to=target.getBoundingClientRect();const flying=document.createElement('span');flying.className='flying-electron';flying.textContent='e⁻';flying.style.left=from.left+'px';flying.style.top=from.top+'px';document.body.appendChild(flying);electron.classList.add('transferred');target.classList.add('filled');updateTransferLabels(true);completeIonicTask('electron-transfer');requestAnimationFrame(()=>{flying.style.left=(to.left+to.width/2-from.width/2)+'px';flying.style.top=(to.top+to.height/2-from.height/2)+'px'});setTimeout(()=>{flying.remove()},800);feedback('#transfer-feedback','Natrium gibt ein Elektron ab. Chlor nimmt ein Elektron auf.',true);setTimeout(()=>reveal('#ions-section'),900)}
   electron.addEventListener('click',selectElectron);target.addEventListener('click',transferElectron);
 
   document.querySelectorAll('[data-assignment]').forEach(button=>button.addEventListener('click',()=>{const row=button.dataset.assignment,correct=row==='given'?'positive':'negative';if(button.dataset.answer!==correct){feedback('#assignment-feedback','Noch nicht. Überlege, wie sich die Anzahl der Elektronen verändert hat.');return}state.assignment[row]=true;button.classList.add('correct');button.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);completeIonicTask('charge-'+row);if(Object.values(state.assignment).every(Boolean)){feedback('#assignment-feedback','Genau! Elektronen abgeben → positiv. Elektronen aufnehmen → negativ.',true);reveal('#attraction-section')}}));
