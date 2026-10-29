@@ -139,5 +139,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.addEventListener('click',event=>{const trigger=event.target.closest('[data-binding-info]');if(trigger)showBindingInfo(trigger.dataset.bindingInfo)});
   document.querySelector('#close-binding-info').addEventListener('click',()=>{const dialog=document.querySelector('#binding-info-dialog');if(typeof dialog.close==='function')dialog.close();else dialog.removeAttribute('open')});
   showDiscoveryExample();
-  if(window.BindungenProgressReady)window.BindungenProgressReady.then(restoreBindingTasks);else document.addEventListener('bindungen-progress-ready',event=>restoreBindingTasks(event.detail),{once:true});
+  // Auch im lokalen Anmeldemodus sofort aus localStorage wiederherstellen.
+  // Dort wird das Cloud-Bereitschaftssignal nicht zwingend ausgelöst.
+  restoreBindingTasks(BindungenProgress.loadProgress());
+  if(window.BindungenProgressReady)window.BindungenProgressReady.then(restoreBindingTasks);
+  document.addEventListener('bindungen-progress-ready',event=>restoreBindingTasks(event.detail),{once:true});
 });
