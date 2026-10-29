@@ -183,6 +183,7 @@ body .container section#reaction-transition.evaluation-next > h2{display:block;w
 .lewis-learning .electron-position .electron-dot{width:12px;height:12px}
 .lewis-learning .electron-pair-line{display:block;width:28px;height:4px;border-radius:4px;background:var(--covalent)}
 .lewis-learning .electron-position.left .electron-pair-line,.lewis-learning .electron-position.right .electron-pair-line{width:4px;height:28px}
+.lewis-learning .electron-zone.left .electron-pair-line,.lewis-learning .electron-zone.right .electron-pair-line{width:4px;height:28px}
 .lewis-learning .lewis-task-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}
 .lewis-learning .lewis-task-tabs button{padding:10px 15px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
 .lewis-learning .lewis-task-tabs button[aria-current]{border-color:var(--covalent);background:var(--lewis-soft);font-weight:750}
@@ -207,6 +208,7 @@ body .container section#reaction-transition.evaluation-next > h2{display:block;w
 .lewis-learning .lewis-editor-instruction{padding:16px 18px;border-radius:14px;background:var(--surface);font-size:.92rem}
 .lewis-learning .lewis-atom-palette{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px 0}
 .lewis-learning .lewis-atom-palette button{width:116px;padding:12px 6px;border:1px solid var(--line);background:#fff8e8;border-radius:18px;display:flex;flex-direction:column;align-items:center}
+.lewis-learning .lewis-atom-palette .lewis-atom{width:68px;height:68px;flex:none;background:#fff}
 .lewis-learning .lewis-atom-palette strong{font-size:1.8rem}.lewis-learning .lewis-atom-palette span{font-size:.69rem}
 .lewis-learning .lewis-electron-budget{font-size:.82rem;color:var(--muted);text-align:center}
 .lewis-learning .lewis-workspace{width:100%;max-width:660px;aspect-ratio:1;position:relative;isolation:isolate;border-radius:20px;border:1px solid var(--line);background:radial-gradient(circle at 1px 1px,#d9e1dd 1px,transparent 1px) 0 0/22px 22px,var(--surface);margin:24px auto}

@@ -34,7 +34,7 @@
       success.appendChild(box);
       box.querySelector('#millionaire-unlock-button').addEventListener('click',()=>{
         const input=box.querySelector('#millionaire-code'),feedback=box.querySelector('#millionaire-code-feedback');
-        if(input.value.trim()!=='Super'){feedback.textContent='Der Code stimmt noch nicht.';feedback.className='teacher-code-feedback wrong';return;}
+        if(input.value.trim()!=='SUPER'){feedback.textContent='Der Code stimmt noch nicht. Bitte in Großbuchstaben eingeben: SUPER.';feedback.className='teacher-code-feedback wrong';return;}
         const nextProgress=BindungenProgress.loadProgress();nextProgress.modules.metallbindung=nextProgress.modules.metallbindung||{};nextProgress.modules.metallbindung.millionaerFreigeschaltet=true;BindungenProgress.saveProgress(nextProgress);renderMillionaireAccess();
       });
     }

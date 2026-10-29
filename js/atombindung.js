@@ -224,7 +224,9 @@
       changed(){this.solved=false;this.glasses=false;this.highlight=null;this.host.querySelector('.shell-feedback').textContent='';this.store();this.render();$('#'+this.kind+'-next').hidden=true;}
       render() {
         const palette=this.task.palette||Object.keys(covalentAtoms);
-        this.host.querySelector('.atom-palette').innerHTML=palette.map(s=>`<button type="button" class="palette-atom" data-palette="${s}" aria-pressed="${this.palette===s}" aria-label="${covalentAtoms[s].name}, ${covalentAtoms[s].valence} Außenelektronen auswählen">${atomSvg(s,0,true)}<span>${covalentAtoms[s].valence} Außenelektron${s==='H'?'':'en'}</span></button>`).join('');
+        const paletteFreeZones={H:[0,0,0,0],Cl:[2,2,2,0],O:[2,2,0,0],N:[2,0,0,0],C:[0,0,0,0]};
+        const palettePairCount={H:0,Cl:3,O:2,N:1,C:0};
+        this.host.querySelector('.atom-palette').innerHTML=palette.map(s=>`<button type="button" class="palette-atom" data-palette="${s}" aria-pressed="${this.palette===s}" aria-label="${covalentAtoms[s].name}, ${covalentAtoms[s].valence} Außenelektronen auswählen">${atomSvg(s,0,true,[],palettePairCount[s],paletteFreeZones[s])}<span>${covalentAtoms[s].valence} Außenelektron${s==='H'?'':'en'}</span></button>`).join('');
         this.host.querySelector('.workspace-slots').innerHTML=slots.map((slot,i)=>this.graph.atoms.some(a=>a.slot===i)?'':`<button type="button" class="workspace-slot" data-slot="${i}" style="left:${slot.x}%;top:${slot.y}%" aria-label="${['Mitte','Links','Rechts','Oben','Unten'][i]}: Atom einsetzen" ${!palette.length?'disabled':''}>+</button>`).join('');
         this.host.querySelector('.workspace-atoms').innerHTML=this.graph.atoms.map(atom=>{
           const slot=slots[atom.slot],count=bondCount(this.graph,atom.id);
