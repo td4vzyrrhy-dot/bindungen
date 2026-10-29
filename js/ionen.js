@@ -50,7 +50,18 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(tasks['attraction']?.completed)reveal('#lattice-section');
     if(tasks['lattice-final']?.completed)reveal('#magnesium-section');
     if(state.magnesium.Mg&&state.magnesium.O)document.querySelector('#magnesium-result').hidden=false;
-    if(state.miniIndex>0){document.querySelector('#magnesium-section').hidden=true;reveal('#mini-check-section');showMiniQuestion()}
+    const completedMini=miniQuestions.filter((_,index)=>tasks['mini-'+index]?.completed).length;
+    state.miniIndex=Math.max(Number(state.miniIndex)||0,completedMini);
+    if(state.miniIndex>=miniQuestions.length){
+      state.miniIndex=miniQuestions.length;
+      document.querySelector('#magnesium-section').hidden=true;
+      document.querySelector('#mini-check-section').hidden=true;
+      document.querySelector('#ionic-finish').hidden=false;
+    }else if(state.miniIndex>0){
+      document.querySelector('#magnesium-section').hidden=true;
+      reveal('#mini-check-section');
+      showMiniQuestion();
+    }
     if(Array.isArray(savedIonic.lattice)&&savedIonic.lattice.length===4){
       savedIonic.lattice.forEach((row,r)=>row.forEach((ion,c)=>{lattice[r][c]=ion}));
       latticeState.count=Number(savedIonic.latticeState?.count)||lattice.flat().filter(Boolean).length||1;
@@ -93,7 +104,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const electron=document.querySelector('#na-electron'),target=document.querySelector('#cl-target');
   function selectElectron(){state.electronSelected=true;electron.classList.add('selected');persistIonic();feedback('#transfer-feedback','Elektron ausgewählt. Tippe jetzt auf die freie Position bei Chlor.',true)}
   function transferElectron(){if(!state.electronSelected){feedback('#transfer-feedback','Tippe zuerst das Außenelektron bei Natrium an.');return}const from=electron.getBoundingClientRect(),to=target.getBoundingClientRect();const flying=document.createElement('span');flying.className='flying-electron';flying.textContent='e⁻';flying.style.left=from.left+'px';flying.style.top=from.top+'px';document.body.appendChild(flying);electron.classList.add('transferred');target.classList.add('filled');completeIonicTask('electron-transfer');requestAnimationFrame(()=>{flying.style.left=(to.left+to.width/2-from.width/2)+'px';flying.style.top=(to.top+to.height/2-from.height/2)+'px'});setTimeout(()=>{flying.remove()},800);feedback('#transfer-feedback','Natrium gibt ein Elektron ab. Chlor nimmt ein Elektron auf.',true);setTimeout(()=>reveal('#ions-section'),900)}
-  electron.addEventListener('click',selectElectron);electron.addEventListener('pointerdown',selectElectron);target.addEventListener('click',transferElectron);
+  electron.addEventListener('click',selectElectron);target.addEventListener('click',transferElectron);
 
   document.querySelectorAll('[data-assignment]').forEach(button=>button.addEventListener('click',()=>{const row=button.dataset.assignment,correct=row==='given'?'positive':'negative';if(button.dataset.answer!==correct){feedback('#assignment-feedback','Noch nicht. Überlege, wie sich die Anzahl der Elektronen verändert hat.');return}state.assignment[row]=true;button.classList.add('correct');button.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);completeIonicTask('charge-'+row);if(Object.values(state.assignment).every(Boolean)){feedback('#assignment-feedback','Genau! Elektronen abgeben → positiv. Elektronen aufnehmen → negativ.',true);reveal('#attraction-section')}}));
   document.querySelectorAll('[data-attraction] button').forEach(button=>button.addEventListener('click',()=>{if(button.dataset.answer!=='attract'){feedback('#attraction-feedback','Noch nicht. Denke an entgegengesetzte Ladungen.');return}button.classList.add('correct');button.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);document.querySelector('#attraction-demo').classList.add('attracted');completeIonicTask('attraction');feedback('#attraction-feedback','Positive und negative Ionen ziehen sich aufgrund ihrer entgegengesetzten Ladungen an. Diese elektrische Anziehung ist die Grundlage der Ionenbindung.',true);setTimeout(()=>{initIonLatticeBuilder();reveal('#lattice-section')},900)}));
@@ -136,5 +147,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   function checkMiniAnswer(answer,button){const item=miniQuestions[state.miniIndex];if(answer!==item.a){feedback('#mini-feedback','Noch nicht. Nutze die Regeln aus den vorherigen Abschnitten.');return}button.classList.add('correct');button.parentElement.querySelectorAll('button').forEach(item=>item.disabled=true);completeIonicTask('mini-'+state.miniIndex);feedback('#mini-feedback','✓ Richtig!',true);state.miniIndex++;persistIonic();if(state.miniIndex===miniQuestions.length){setTimeout(()=>{document.querySelector('#mini-check-section').hidden=true;reveal('#ionic-finish')},450)}else setTimeout(showMiniQuestion,450)}
   document.querySelector('#start-mini-check').addEventListener('click',startIonMiniCheck);
   document.querySelector('#complete-ionic').addEventListener('click',()=>{BindungenProgress.completeMission(4,'ionen');BindungenProgress.completeMission(5,'ionengitter');location.href='salze.html'});
-  if(window.BindungenProgressReady)window.BindungenProgressReady.then(restoreIonicTasks);else document.addEventListener('bindungen-progress-ready',event=>restoreIonicTasks(event.detail),{once:true});
+  restoreIonicTasks(BindungenProgress.loadProgress());
+  if(window.BindungenProgressReady)window.BindungenProgressReady.then(restoreIonicTasks);
+  document.addEventListener('bindungen-progress-ready',event=>restoreIonicTasks(event.detail),{once:true});
 });
