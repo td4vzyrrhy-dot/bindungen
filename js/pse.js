@@ -250,6 +250,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     savePseState({locationState:{pool:locationPool.map(item=>item.symbol),index:locationPool.length,completed:true}});
     location.href='bindungscode.html';
   });
+  // Im lokalen Anmeldemodus wird BindungenProgressReady nicht immer aufgelöst.
+  // Deshalb den lokalen Stand sofort wiederherstellen; ein später eintreffender
+  // Cloud-Stand darf zusätzlich noch nachgeladen werden.
+  restorePseTasks(BindungenProgress.loadProgress());
   if(window.BindungenProgressReady)window.BindungenProgressReady.then(restorePseTasks);
-  else document.addEventListener('bindungen-progress-ready',event=>restorePseTasks(event.detail),{once:true});
+  document.addEventListener('bindungen-progress-ready',event=>restorePseTasks(event.detail),{once:true});
 });
