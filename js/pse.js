@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   ];
   const savedPse=BindungenProgress.loadProgress().modules?.pse||{};
   const patternState=savedPse.patternState||{},locationState=savedPse.locationState||{};
+  const savedCompletedElements=Array.isArray(savedPse.completedElements)?savedPse.completedElements:[];
   function savePseState(changes){const progress=BindungenProgress.loadProgress(),module=progress.modules.pse||{};Object.assign(module,changes);progress.modules.pse=module;BindungenProgress.saveProgress(progress)}
   const lanthanides=['La','Ce','Pr','Nd','Pm','Sm','Eu','Gd','Tb','Dy','Ho','Er','Tm','Yb','Lu'];
   const actinides=['Ac','Th','Pa','U','Np','Pu','Am','Cm','Bk','Cf','Es','Fm','Md','No','Lr'];
@@ -68,14 +69,21 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   function restorePseTasks(progress){
     const tasks=progress?.modules?.pse?.tasks||{};
+    const completedElements=new Set([
+      ...savedCompletedElements,
+      ...(Array.isArray(progress?.modules?.pse?.completedElements)?progress.modules.pse.completedElements:[]),
+      ...Object.entries(tasks).filter(([task,data])=>task.startsWith('element-')&&data?.completed).map(([task])=>task.slice(8))
+    ]);
+    completedElements.forEach(symbol=>{
+      const element=elements.find(item=>item.dataset.symbol===symbol);
+      if(!element||element.classList.contains('solved'))return;
+      element.classList.add('solved',element.dataset.type);
+      found[element.dataset.type]=Math.min(targets[element.dataset.type],found[element.dataset.type]+1);
+      counters[element.dataset.type].textContent=found[element.dataset.type];
+    });
     Object.entries(tasks).forEach(([task,data])=>{
       if(!data?.completed)return;
       if(task.startsWith('element-')){
-        const symbol=task.slice(8),element=elements.find(item=>item.dataset.symbol===symbol);
-        if(!element||element.classList.contains('solved'))return;
-        element.classList.add('solved',element.dataset.type);
-        found[element.dataset.type]=Math.min(targets[element.dataset.type],found[element.dataset.type]+1);
-        counters[element.dataset.type].textContent=found[element.dataset.type];
         console.log('[Progress Restore] Aufgabe wiederhergestellt: pse/'+task);
       }else if(task==='pattern'){
         patternTask.hidden=false;grid.classList.add('fully-revealed');document.querySelectorAll('.periodic-choice').forEach(element=>element.classList.add('map-revealed'));stair.classList.add('show');hydrogenNote.hidden=false;
@@ -119,6 +127,10 @@ document.addEventListener('DOMContentLoaded',()=>{
       selectedElement=null;
       popover.hidden=true;
       BindungenProgress.completeTask('pse','element-'+solvedSymbol);
+      const current=BindungenProgress.loadProgress();
+      const completed=Array.isArray(current.modules?.pse?.completedElements)?current.modules.pse.completedElements:[];
+      if(!completed.includes(solvedSymbol))completed.push(solvedSymbol);
+      savePseState({completedElements:completed});
       if(Object.keys(targets).every(type=>found[type]>=targets[type])){
         grid.classList.add('fully-revealed');
         elements.forEach(element=>element.classList.add('map-revealed'));
